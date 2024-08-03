@@ -5,7 +5,6 @@ export default function ProductsList(): JSX.Element {
     <ul className={styles["main_products"]}>
       <li className={styles["main_products-card"]}>
         <div className={styles["main_products-card-picture"]}>
-          hi
           <img
             src="../../../../../public/img/no-picture.jpg"
             alt="Фото товара"
