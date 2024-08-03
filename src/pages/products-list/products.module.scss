@@ -1,9 +1,14 @@
 @import "../../../public/base-styles.scss";
 
 .main {
-  padding: 0 24px;
+  width: 100%;
+  padding: 24px 0px;
+
   &_products {
+    width: 70%;
     display: flex;
+    gap: 24px;
+    margin: 0 auto;
 
     &-card {
       padding: 0px 14px 14px 14px;

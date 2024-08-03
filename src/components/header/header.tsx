@@ -1,14 +1,15 @@
+import styles from "./header.module.scss";
 import Button from "../../components/button/button";
 
 export default function Header(): JSX.Element {
   return (
-    <header className="header">
+    <header className={styles["header"]}>
       <img
-        className="header_logo"
-        src="../../../public/img/icons-svg/logo.svg"
+        className={styles["header_logo"]}
+        src="/img/icons-svg/logo.svg"
         alt="Логотип"
       />
-      <nav className="header_menu">
+      <nav className={styles["header_menu"]}>
         <Button
           className="header_menu-btn"
           classActive={false}

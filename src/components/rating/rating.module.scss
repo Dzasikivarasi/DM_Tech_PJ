@@ -1,0 +1,44 @@
+@import "../../../public/base-styles.scss";
+
+.rating {
+  margin: 4px 0 16px;
+}
+
+.rating__container {
+  width: 76px;
+  height: 16px;
+}
+
+.rating__container span {
+  width: 0%;
+}
+.rating__container span::before {
+  width: 76px;
+  background-size: 76px 16px;
+}
+
+.rating__stars {
+  position: relative;
+  display: block;
+  font-size: 0;
+}
+.rating__stars::before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  background: url(/img/icons-svg/rating.svg) transparent no-repeat center;
+}
+.rating__stars span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  height: 100%;
+  overflow: hidden;
+}
+.rating__stars span::before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  background: url(/img/icons-svg/rating-active.svg) transparent no-repeat center;
+}

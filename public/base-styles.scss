@@ -40,16 +40,18 @@ button {
 // Общие шрифты
 @font-face {
   font-family: "Nunito";
-  src: url("../public/fonts/Nunito-Regular.woff2") format("woff2"),
-    url("../public/fonts/Nunito-Regular.woff") format("woff");
+  src:
+    url("/fonts/Nunito-Regular.woff2") format("woff2"),
+    url("/fonts/Nunito-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Nunito";
-  src: url("../public/fonts/Nunito-Bold.woff2") format("woff2"),
-    url("../public/fonts/Nunito-Bold.woff") format("woff");
+  src:
+    url("/fonts/Nunito-Bold.woff2") format("woff2"),
+    url("/fonts/Nunito-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
 }
@@ -60,31 +62,18 @@ $middle-blue: #338feb;
 $light-blue: #89b7e5;
 $background-blue: #f2f6fa;
 $base-red: #ed2c19;
-// $light-red: #F15647;
+$light-red: #f15647;
 $base-yellow: #fabc22;
 $white: #ffffff;
 $black: #172029;
+
+body {
+  font-family: "Nunito", sans-serif;
+}
 
 .container {
   background-color: $background-blue;
   padding: 12px 32px 40px;
   width: 100vw;
   height: 100vh;
-}
-
-.header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  &_logo {
-    width: 150px;
-    height: 24px;
-  }
-
-  &_menu {
-    display: flex;
-    gap: 16px;
-  }
 }

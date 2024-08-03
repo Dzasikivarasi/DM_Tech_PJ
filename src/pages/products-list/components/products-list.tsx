@@ -1,3 +1,4 @@
+import Rating from "../../../components/rating/rating";
 import styles from "../products.module.scss";
 
 export default function ProductsList(): JSX.Element {
@@ -5,12 +6,10 @@ export default function ProductsList(): JSX.Element {
     <ul className={styles["main_products"]}>
       <li className={styles["main_products-card"]}>
         <div className={styles["main_products-card-picture"]}>
-          <img
-            src="../../../../../public/img/no-picture.jpg"
-            alt="Фото товара"
-          />
+          <img src="/img/no-picture.jpg" alt="Фото товара" />
         </div>
         <p className={styles["main_products-card-name"]}>Куртка Lassie</p>
+        <Rating />
         <div className={styles["main_products-card-rating"]}></div>
         <p className={styles["main_products-card-price"]}>4 799 ₽</p>
       </li>

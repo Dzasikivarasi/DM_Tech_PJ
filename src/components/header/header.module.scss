@@ -1,0 +1,18 @@
+@import "../../../public/base-styles.scss";
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &_logo {
+    width: 150px;
+    height: 24px;
+  }
+
+  &_menu {
+    display: flex;
+    gap: 16px;
+  }
+}
