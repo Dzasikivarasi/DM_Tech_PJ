@@ -1,0 +1,69 @@
+@import "../../../public/base-styles.scss";
+
+.button {
+  padding: 16px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+// Базовая кнопка
+.submit-btn {
+  background-color: $base-blue;
+  border-radius: 12px;
+  color: $white;
+  // font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+
+  &:hover {
+    background-color: $middle-blue;
+  }
+
+  &:disabled {
+    background-color: $light-blue;
+    cursor: default;
+  }
+}
+
+// Кнопки меню
+.header_menu-btn {
+  background-color: transparent;
+  color: $black;
+
+  &-active {
+    position: relative;
+    color: $base-blue;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0%;
+      left: 10%;
+      width: 80%;
+      height: 3px;
+      background-color: $base-blue;
+      border-radius: 8px 8px 8px 8px;
+    }
+  }
+}
+
+// Кнопка корзины
+.header_cart-btn {
+  position: relative;
+  background-color: transparent;
+  color: $black;
+  padding: 16px 0px 16px 24px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 30%;
+    left: 0%;
+    width: 50px;
+    height: 50px;
+    background-image: url("../../assets/icons-svg/cart.svg");
+    background-repeat: no-repeat;
+    z-index: 1;
+  }
+}

@@ -1,0 +1,41 @@
+@import "../../../public/base-styles.scss";
+
+.main {
+  padding: 0 24px;
+  &_products {
+    display: flex;
+
+    &-card {
+      padding: 0px 14px 14px 14px;
+      max-height: 358px;
+      max-width: 250px;
+      border: solid 2px $white;
+      border-radius: 20px;
+      background-color: $white;
+
+      &-picture {
+        position: relative;
+        max-height: 358px;
+        max-width: 250px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+      }
+      &-name {
+        margin-top: 12px;
+      }
+      &-rating {
+        margin: 4px 0 16px;
+        max-width: 76px;
+      }
+      &-price {
+        padding: auto;
+      }
+    }
+  }
+}

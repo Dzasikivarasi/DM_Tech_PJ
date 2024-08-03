@@ -1,0 +1,90 @@
+// Обнуление дефолтных стилей
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  cursor: pointer;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+// Общие шрифты
+@font-face {
+  font-family: "Nunito";
+  src: url("../public/fonts/Nunito-Regular.woff2") format("woff2"),
+    url("../public/fonts/Nunito-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("../public/fonts/Nunito-Bold.woff2") format("woff2"),
+    url("../public/fonts/Nunito-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+// Базовые цвета
+$base-blue: #0073e6;
+$middle-blue: #338feb;
+$light-blue: #89b7e5;
+$background-blue: #f2f6fa;
+$base-red: #ed2c19;
+// $light-red: #F15647;
+$base-yellow: #fabc22;
+$white: #ffffff;
+$black: #172029;
+
+.container {
+  background-color: $background-blue;
+  padding: 12px 32px 40px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &_logo {
+    width: 150px;
+    height: 24px;
+  }
+
+  &_menu {
+    display: flex;
+    gap: 16px;
+  }
+}
