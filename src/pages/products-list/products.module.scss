@@ -9,14 +9,20 @@
     display: flex;
     gap: 24px;
     margin: 0 auto;
+    flex-wrap: wrap;
 
     &-card {
+      @include card-container;
+      @include card-container-animation;
       padding: 0px 14px 14px 14px;
+      width: 18%;
       max-height: 358px;
       max-width: 250px;
-      border: solid 2px $white;
-      border-radius: 20px;
-      background-color: $white;
+      transition: box-shadow 0.3s ease;
+
+      &:hover {
+        box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
+      }
 
       &-picture {
         position: relative;
@@ -34,12 +40,10 @@
       &-name {
         margin-top: 12px;
       }
-      &-rating {
-        margin: 4px 0 16px;
-        max-width: 76px;
-      }
       &-price {
-        padding: auto;
+        // padding: auto;
+        font-size: 22px;
+        font-weight: 800;
       }
     }
   }

@@ -1,6 +1,6 @@
 import styles from "./products.module.scss";
 import ProductsList from "./components/products-list";
-import ProductsNavigation from "./components/products-navigation";
+import ProductsNavigation from "../../components/navigation-scroll/products-navigation";
 
 export default function ProductsPage(): JSX.Element {
   return (

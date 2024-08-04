@@ -1,7 +1,10 @@
 import styles from "./rating.module.scss";
 
-export default function Rating(): JSX.Element {
-  const rating = 4.8;
+type RatingProps = {
+  rating: number;
+};
+
+export default function Rating({ rating }: RatingProps): JSX.Element {
   return (
     <div className={`${styles.rating}`}>
       <div className={`${styles.rating__container} ${styles.rating__stars}`}>
