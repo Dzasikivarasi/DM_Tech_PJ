@@ -9,3 +9,21 @@ export type Product = {
 };
 
 export type Products = Product[];
+
+export type ProductsMeta = {
+  count: number;
+  total: number;
+};
+
+export type GetProducts = {
+  meta: {
+    count: number;
+    total: number;
+    sort: {
+      field: string;
+      direction: string;
+    };
+    availableFields: string[];
+  };
+  data: Products;
+};

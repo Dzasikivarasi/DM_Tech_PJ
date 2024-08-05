@@ -1,10 +1,13 @@
+import { useSelector } from "react-redux";
 import Button from "../../components/button/button";
 import Rating from "../../components/rating/rating";
-import { PRODUCTS } from "../../mock-data";
 import styles from "./product-card.module.scss";
+import { RootState } from "../../store/store";
 
 export default function ProductCardPage(): JSX.Element {
-  const product = PRODUCTS[0];
+  const products = useSelector((state: RootState) => state.products.products);
+  const product = products[0];
+
   return (
     <main className={styles["main"]}>
       <div className={styles["main_product"]}>

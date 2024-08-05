@@ -1,0 +1,23 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-container {
+  margin: 50px auto;
+  width: 50%;
+  height: 50%;
+  max-width: 175px;
+  max-height: 65px;
+}
+
+.loader {
+  width: 50%;
+  height: 50%;
+  animation: spin 2s linear infinite;
+  transform-origin: center;
+}
