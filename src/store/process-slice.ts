@@ -6,12 +6,14 @@ import { getProductsAction } from "./process-api";
 
 interface ProductsInitialStateType {
   products: Products;
+  displayedProducts: Products;
   loading: boolean;
   meta: ProductsMeta;
 }
 
 const initialState: ProductsInitialStateType = {
   products: [],
+  displayedProducts: [],
   loading: true,
   meta: {
     count: 0,
@@ -22,7 +24,14 @@ const initialState: ProductsInitialStateType = {
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    updateDisplayedProducts: (state, action) => {
+      state.displayedProducts = [...state.displayedProducts, ...action.payload];
+    },
+    dropDisplayedProducts: (state, action) => {
+      state.displayedProducts = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getProductsAction.pending, (state) => {
@@ -31,6 +40,7 @@ const productsSlice = createSlice({
       .addCase(getProductsAction.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload.data;
+
         state.meta.count = action.payload.meta.count;
         state.meta.total = action.payload.meta.total;
       })
@@ -41,5 +51,7 @@ const productsSlice = createSlice({
   },
 });
 
+export const { updateDisplayedProducts, dropDisplayedProducts } =
+  productsSlice.actions;
 export type { ProductsInitialStateType };
 export default productsSlice.reducer;

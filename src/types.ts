@@ -8,7 +8,7 @@ export type Product = {
   rating: number;
 };
 
-export type Products = Product[];
+export type Products = Product[] | [];
 
 export type ProductsMeta = {
   count: number;
