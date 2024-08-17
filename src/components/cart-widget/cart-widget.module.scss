@@ -1,0 +1,19 @@
+@import "../../../public/base-styles.scss";
+
+.cart-widget {
+  display: flex;
+  width: 100%;
+
+  &-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $light-grey-blue;
+    color: $black;
+    font-size: 18px;
+    font-weight: bold;
+    width: 52px;
+    height: 52px;
+    text-align: center;
+  }
+}

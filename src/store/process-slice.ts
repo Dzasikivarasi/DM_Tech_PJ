@@ -9,6 +9,7 @@ interface ProductsInitialStateType {
   displayedProducts: Products;
   loading: boolean;
   meta: ProductsMeta;
+  productsInCartCount: number;
 }
 
 const initialState: ProductsInitialStateType = {
@@ -19,6 +20,7 @@ const initialState: ProductsInitialStateType = {
     count: 0,
     total: 0,
   },
+  productsInCartCount: 0,
 };
 
 const productsSlice = createSlice({
@@ -30,6 +32,9 @@ const productsSlice = createSlice({
     },
     dropDisplayedProducts: (state, action) => {
       state.displayedProducts = action.payload;
+    },
+    updateProductsInCartCount: (state, action) => {
+      state.productsInCartCount = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -51,7 +56,10 @@ const productsSlice = createSlice({
   },
 });
 
-export const { updateDisplayedProducts, dropDisplayedProducts } =
-  productsSlice.actions;
+export const {
+  updateDisplayedProducts,
+  dropDisplayedProducts,
+  updateProductsInCartCount,
+} = productsSlice.actions;
 export type { ProductsInitialStateType };
 export default productsSlice.reducer;

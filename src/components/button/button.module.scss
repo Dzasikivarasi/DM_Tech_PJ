@@ -16,6 +16,23 @@
   }
 }
 
+@mixin widget-button() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $light-grey-blue;
+  color: $base-blue;
+  font-size: 30px;
+  font-weight: bold;
+  width: 52px;
+  height: 52px;
+  text-align: center;
+  &:disabled {
+    color: rgba($base-blue, 0.5);
+    cursor: default;
+  }
+}
+
 .button {
   padding: 16px;
   text-align: center;
@@ -29,6 +46,7 @@
 // Базовая кнопка
 .submit-btn {
   background-color: $base-blue;
+  padding: 16px 0;
   border-radius: 12px;
   color: $white;
   font-size: 16px;
@@ -78,4 +96,18 @@
 .return-btn {
   @include transparent-icon-button("/img/icons-svg/arrow-left.svg");
   color: $base-blue;
+}
+
+// Кнопка управления товарами
+.cart-widget-btn {
+  &-right {
+    @include widget-button();
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  &-left {
+    @include widget-button();
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+  }
 }

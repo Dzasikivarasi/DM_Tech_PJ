@@ -1,17 +1,23 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/button/button";
 import Rating from "../../components/rating/rating";
 import styles from "./product-card.module.scss";
-import { RootState } from "../../store/store";
+import { AppDispatch, RootState } from "../../store/store";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import { AppRoute } from "../../constants";
 import { formatNumber } from "../../utils";
 import DOMPurify from "dompurify";
+import CartWidget from "../../components/cart-widget/cart-widget";
+import { updateProductsInCartCount } from "../../store/process-slice";
 
 export default function ProductCardPage(): JSX.Element {
+  const dispatch: AppDispatch = useDispatch();
   const displayedProducts = useSelector(
     (state: RootState) => state.products.displayedProducts
+  );
+  const productsInCartCount = useSelector(
+    (state: RootState) => state.products.productsInCartCount
   );
   const params = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -30,6 +36,14 @@ export default function ProductCardPage(): JSX.Element {
 
   const onReturnButtonClick = () => {
     navigate(AppRoute.Products);
+  };
+
+  const onAddButtonClick = () => {
+    dispatch(updateProductsInCartCount(1));
+  };
+
+  const onCreateOrderClick = () => {
+    navigate(AppRoute.Cart);
   };
 
   if (!product) {
@@ -53,7 +67,23 @@ export default function ProductCardPage(): JSX.Element {
           <p className={styles["main_product-info-price"]}>
             {formatNumber(product.price)} ₽
           </p>
-          <Button className="submit-btn" buttonText="Добавить в корзину" />
+          {productsInCartCount && productsInCartCount > 0 ? (
+            <div className={styles["main_product-info-widget"]}>
+              <CartWidget />
+              <Button
+                className="submit-btn"
+                buttonText="Оформить заказ"
+                buttonClickHandler={onCreateOrderClick}
+              />
+            </div>
+          ) : (
+            <Button
+              className="submit-btn"
+              buttonText="Добавить в корзину"
+              buttonClickHandler={onAddButtonClick}
+            />
+          )}
+
           <div className={styles["main_product-info-return"]}>
             <p className={styles["main_product-info-return-title"]}>
               Условия возврата

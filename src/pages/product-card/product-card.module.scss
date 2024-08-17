@@ -71,6 +71,15 @@
         color: $gray;
         font-size: 12px;
       }
+      &-widget {
+        display: flex;
+        gap: 8px;
+      }
+      &-widget > * {
+        flex: 1;
+        width: 50%;
+        box-sizing: border-box;
+      }
     }
   }
 
