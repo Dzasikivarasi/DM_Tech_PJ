@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import Button from "../../components/button/button";
-import Rating from "../../components/rating/rating";
+import Button from "../../components/button/Button";
+import Rating from "../../components/rating/Rating";
 import styles from "./product-card.module.scss";
 import { AppDispatch, RootState } from "../../store/store";
 import { useEffect } from "react";
@@ -8,7 +8,7 @@ import { useNavigate, useParams } from "react-router";
 import { AppRoute } from "../../constants";
 import { formatNumber } from "../../utils";
 import DOMPurify from "dompurify";
-import CartWidget from "../../components/cart-widget/cart-widget";
+import CartWidget from "../../components/cart-widget/Cart-widget";
 import { updateProductsInCartCount } from "../../store/process-slice";
 
 export default function ProductCardPage(): JSX.Element {

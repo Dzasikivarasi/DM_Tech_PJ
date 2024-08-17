@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Rating from "../../../components/rating/rating";
+import Rating from "../../../components/rating/Rating";
 import { AppRoute } from "../../../constants";
 import { Product } from "../../../types";
 import { formatNumber } from "../../../utils";

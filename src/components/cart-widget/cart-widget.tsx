@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { updateCount } from "../../utils";
-import Button from "../button/button";
+import Button from "../button/Button";
 import styles from "./cart-widget.module.scss";
 import { updateProductsInCartCount } from "../../store/process-slice";
 

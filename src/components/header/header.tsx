@@ -1,5 +1,5 @@
 import styles from "./header.module.scss";
-import Button from "../../components/button/button";
+import Button from "../button/Button";
 import { useNavigate } from "react-router-dom";
 import { AppRoute } from "../../constants";
 import { useState } from "react";

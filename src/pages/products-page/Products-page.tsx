@@ -1,11 +1,11 @@
 import styles from "./products.module.scss";
-import Loader from "../../components/loader/loader";
+import Loader from "../../components/loader/Loader";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getProductsAction } from "../../store/process-api";
-import Card from "./components/card";
+import Card from "./components/Card";
 import { Products } from "../../types";
 import {
   dropDisplayedProducts,

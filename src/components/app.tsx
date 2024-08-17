@@ -1,11 +1,11 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import ProductCardPage from "../pages/product-card/product-card-page";
-import Layout from "./layout";
+import ProductCardPage from "../pages/product-card-page/Product-card-page";
+import Layout from "./Layout";
 import { AppRoute } from "../constants";
-import ProductsPage from "../pages/products-list/products-page";
-import OrdersPage from "../pages/orders-page/orders-page";
-import CartPage from "../pages/cart-page/cart-page";
-import NotFound from "../pages/not-found/not-found";
+import ProductsPage from "../pages/products-page/Products-page";
+import OrdersPage from "../pages/orders-page/Orders-page";
+import NotFound from "../pages/not-found/Not-found";
+import CartPage from "../pages/cart-page/Cart-page";
 
 export default function App(): JSX.Element {
   return (
