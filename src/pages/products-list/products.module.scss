@@ -14,10 +14,15 @@
     &-card {
       @include card-container;
       @include card-container-animation;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       padding: 0px 14px 14px 14px;
       width: 18%;
       max-height: 358px;
       max-width: 250px;
+      min-width: 180px;
+
       transition: box-shadow 0.3s ease;
 
       &:hover {
@@ -25,21 +30,32 @@
       }
 
       &-picture {
+        background: url("/img/no-picture.jpg") center / cover no-repeat;
         position: relative;
-        max-height: 358px;
+        max-height: 250px;
         max-width: 250px;
+        width: 100%;
+        height: 60%;
+        min-height: 190px;
         overflow: hidden;
+        box-sizing: border-box;
 
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           display: block;
+          box-sizing: border-box;
+          overflow: hidden;
         }
       }
       &-name {
-        margin-top: 12px;
+        @include text-overflow(2);
+        height: auto;
+        margin-top: 8px;
+        margin-bottom: 4px;
       }
+
       &-price {
         // padding: auto;
         font-size: 22px;

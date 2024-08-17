@@ -5,6 +5,7 @@ import { AppRoute } from "../constants";
 import ProductsPage from "../pages/products-list/products-page";
 import OrdersPage from "../pages/orders-page/orders-page";
 import CartPage from "../pages/cart-page/cart-page";
+import NotFound from "../pages/not-found/not-found";
 
 export default function App(): JSX.Element {
   return (
@@ -20,6 +21,7 @@ export default function App(): JSX.Element {
             element={<ProductCardPage />}
           />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

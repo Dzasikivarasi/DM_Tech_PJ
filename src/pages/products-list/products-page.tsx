@@ -36,7 +36,7 @@ export default function ProductsPage(): JSX.Element {
       }
     };
     initProducts();
-    console.log(initialLoading);
+    console.log(displayedProducts);
   }, []);
 
   const scrollHandler = () => {
@@ -68,6 +68,7 @@ export default function ProductsPage(): JSX.Element {
       loadProducts();
       console.log("clicked");
       console.log(page);
+      console.log(displayedProducts);
     }
   }, [loadingNewPage]);
 

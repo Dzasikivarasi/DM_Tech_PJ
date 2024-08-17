@@ -12,16 +12,17 @@
     gap: 24px;
     width: 45%;
     margin: 0 auto;
+    height: auto;
     max-width: 792px;
-    max-height: 422px;
     padding: 24px;
 
     &-picture {
+      background: url("/img/no-picture.jpg") center / cover no-repeat;
       position: relative;
       width: 50%;
       max-width: 374px;
-      max-height: 374px;
-      height: 374px;
+      max-height: 400px;
+      height: 400px;
 
       img {
         width: 100%;
@@ -33,11 +34,12 @@
     &-info {
       width: 50%;
       &-title {
+        @include text-overflow(3);
         font-size: 28px;
         font-weight: 700;
       }
       &-price {
-        margin: 24px 0 8px;
+        margin: 20px 0 8px;
         font-size: 30px;
         font-weight: 1000;
       }
@@ -61,7 +63,7 @@
           }
         }
         &-conditions {
-          margin: 8px 0 16px;
+          margin: 5px 0 16px;
           font-size: 14px;
         }
       }
