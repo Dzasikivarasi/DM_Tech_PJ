@@ -68,7 +68,7 @@ button {
   font-family: "Nunito";
   src:
     url("./fonts/Nunito-ExtraBold.woff2") format("woff2"),
-    url("./fonts/Nunito-Regular.woff") format("woff");
+    url("./fonts/Nunito-ExtraBold.woff") format("woff");
   font-weight: 800;
   font-style: normal;
 }
@@ -84,7 +84,8 @@ $light-red: #f15647;
 $base-yellow: #fabc22;
 $white: #ffffff;
 $black: #172029;
-$gray: #808080;
+$grey: #808080;
+$light-grey: #f2f2f2;
 
 body {
   font-family: "Nunito", sans-serif;
@@ -93,7 +94,7 @@ body {
 .container {
   background-color: $background-blue;
   padding: 12px 32px 40px;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
 }
 

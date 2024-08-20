@@ -3,11 +3,14 @@ import Button from "../button/Button";
 import { useNavigate } from "react-router-dom";
 import { AppRoute } from "../../constants";
 import { useState } from "react";
+import { RootState } from "../../store/store";
+import { useSelector } from "react-redux";
 
 export default function Header(): JSX.Element {
   const [activeProductsPage, setActivePpoductsPage] = useState<boolean>(true);
   const [activeOrdersPage, setActiveOrdersPage] = useState<boolean>(false);
   const navigate = useNavigate();
+  const productsInCart = useSelector((state: RootState) => state.cart.cart);
 
   const onProductsButtonClick = () => {
     navigate(AppRoute.Products);
@@ -55,11 +58,14 @@ export default function Header(): JSX.Element {
           buttonClickHandler={onOrdersButtonClick}
         />
       </nav>
-      <Button
-        className="header_cart-btn"
-        buttonText="Корзина"
-        buttonClickHandler={onCartButtonClick}
-      />
+      <div className={styles["header_cart"]}>
+        <Button
+          className="header_cart-btn"
+          buttonText="Корзина"
+          buttonClickHandler={onCartButtonClick}
+        />
+        <p>({productsInCart.length})</p>
+      </div>
     </header>
   );
 }

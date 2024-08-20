@@ -5,6 +5,7 @@ type ButtonProps = {
   classActive?: boolean;
   buttonText: string;
   buttonClickHandler?: () => void;
+  disabled?: boolean;
 };
 
 export default function Button({
@@ -12,6 +13,7 @@ export default function Button({
   classActive = false,
   buttonText,
   buttonClickHandler,
+  disabled,
 }: ButtonProps): JSX.Element {
   const onButtonClick = () => {
     if (buttonClickHandler) {
@@ -27,6 +29,7 @@ export default function Button({
             classActive ? styles[`${className}-active`] : ""
           }`}
           onClick={onButtonClick}
+          disabled={disabled}
         >
           {buttonText}
         </button>

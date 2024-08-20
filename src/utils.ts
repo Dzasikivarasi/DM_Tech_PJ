@@ -4,12 +4,13 @@ export const formatNumber = (count: number) => {
 
 export function updateCount(
   number: number,
-  action: "increment" | "decrement"
+  action: "increment" | "decrement",
+  maxQuantity: number = 10
 ): number {
   if (action === "increment") {
-    return number + 1;
+    return Math.min(number + 1, maxQuantity);
   } else if (action === "decrement") {
-    return number - 1;
+    return Math.max(number - 1, 0);
   } else {
     throw new Error("Ошибка действия");
   }

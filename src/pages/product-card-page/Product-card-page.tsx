@@ -9,19 +9,24 @@ import { AppRoute } from "../../constants";
 import { formatNumber } from "../../utils";
 import DOMPurify from "dompurify";
 import CartWidget from "../../components/cart-widget/Cart-widget";
-import { updateProductsInCartCount } from "../../store/process-slice";
+import { updateCart } from "../../store/cart/cart-actions";
 
 export default function ProductCardPage(): JSX.Element {
-  const dispatch: AppDispatch = useDispatch();
   const displayedProducts = useSelector(
     (state: RootState) => state.products.displayedProducts
   );
-  const productsInCartCount = useSelector(
-    (state: RootState) => state.products.productsInCartCount
-  );
+  const productsInCart = useSelector((state: RootState) => state.cart.cart);
+  const isLoading = useSelector((state: RootState) => state.cart.loading);
   const params = useParams<{ id: string }>();
   const navigate = useNavigate();
   const product = displayedProducts.find((product) => product.id === params.id);
+  const quantity = productsInCart.find(
+    (product) => product.product.id === params.id
+  )?.quantity;
+  const productExistsInCart = productsInCart.some(
+    (cartItem) => cartItem.product.id === params.id
+  );
+  const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     const { id } = params;
@@ -39,7 +44,10 @@ export default function ProductCardPage(): JSX.Element {
   };
 
   const onAddButtonClick = () => {
-    dispatch(updateProductsInCartCount(1));
+    if (!params.id) return;
+    const id = params.id;
+    const currentQuantity = quantity || 0;
+    updateCart(dispatch, id, currentQuantity + 1, false);
   };
 
   const onCreateOrderClick = () => {
@@ -67,9 +75,13 @@ export default function ProductCardPage(): JSX.Element {
           <p className={styles["main_product-info-price"]}>
             {formatNumber(product.price)} ₽
           </p>
-          {productsInCartCount && productsInCartCount > 0 ? (
+          {productExistsInCart && quantity && quantity > 0 ? (
             <div className={styles["main_product-info-widget"]}>
-              <CartWidget />
+              <CartWidget
+                quantity={quantity}
+                id={product.id}
+                isFromCartPage={false}
+              />
               <Button
                 className="submit-btn"
                 buttonText="Оформить заказ"
@@ -81,6 +93,7 @@ export default function ProductCardPage(): JSX.Element {
               className="submit-btn"
               buttonText="Добавить в корзину"
               buttonClickHandler={onAddButtonClick}
+              disabled={isLoading}
             />
           )}
 

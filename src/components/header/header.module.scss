@@ -16,4 +16,11 @@
     display: flex;
     gap: 16px;
   }
+  &_cart {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    white-space: nowrap;
+    font-weight: bold;
+  }
 }

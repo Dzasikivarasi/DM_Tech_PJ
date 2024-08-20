@@ -27,3 +27,18 @@ export type GetProducts = {
   };
   data: Products;
 };
+
+export type CartItem = {
+  product: Product;
+  quantity: number;
+  createdAt: string;
+};
+
+export type CartItems = CartItem[];
+
+export type UpdateCartRequestData = [
+  {
+    id: string;
+    quantity: number;
+  },
+];

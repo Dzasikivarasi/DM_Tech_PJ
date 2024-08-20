@@ -36,7 +36,6 @@ export default function ProductsPage(): JSX.Element {
       }
     };
     initProducts();
-    console.log(displayedProducts);
   }, []);
 
   const scrollHandler = () => {
