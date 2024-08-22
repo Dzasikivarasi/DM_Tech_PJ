@@ -2,31 +2,54 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import styles from "./cart-page.module.scss";
 import Button from "../../components/button/Button";
-import CartProduct from "./Cart-product";
 import Loader from "../../components/loader/Loader";
 import { useEffect, useState } from "react";
-import EmptyCart from "./Empty-cart";
 import { formatNumber } from "../../utils";
-import { submitCartAction } from "../../store/cart/cart-api";
+import { submitCartAction, updateCartAction } from "../../store/cart/cart-api";
+import EmptyCart from "./components/Empty-cart";
+import CartProduct from "./components/Cart-product";
+import { CartItems, UpdateCartRequestData } from "../../types";
+import { toast } from "react-toastify";
 
 export default function CartPage(): JSX.Element {
   const productsInCart = useSelector((state: RootState) => state.cart.cart);
   const loadingStatus = useSelector((state: RootState) => state.cart.loading);
+
   const [initialLoad, setInitialLoad] = useState(true);
   const showLoader = initialLoad && loadingStatus;
   const finalSum = productsInCart.reduce((sum, item) => {
     return sum + item.product.price * item.quantity;
   }, 0);
+
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     setInitialLoad(false);
-    console.log(productsInCart);
   }, []);
 
-  const onSubmitButtonClick = () => {
-    dispatch(submitCartAction());
-    console.log("оформление заказа");
+  const filterProductsForSubmit = (cartItems: CartItems): CartItems => {
+    return cartItems.filter((item) => item.quantity > 0);
+  };
+
+  const onSubmitButtonClick = async () => {
+    const finalCart: UpdateCartRequestData = [];
+    filterProductsForSubmit(productsInCart).forEach((product) => {
+      finalCart.push({
+        id: product.product.id,
+        quantity: product.quantity,
+      });
+    });
+
+    if (finalCart.length > 0) {
+      try {
+        await dispatch(updateCartAction(finalCart));
+        await dispatch(submitCartAction());
+      } catch (error) {
+        toast.error("Возникла ошибка при оформлении заказа.");
+      }
+    } else {
+      toast.warning("В корзине нет товаров для отправки");
+    }
   };
 
   return (

@@ -4,13 +4,13 @@ import { useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { getProductsAction } from "../../store/process-api";
+import { getProductsAction } from "../../store/products/products-api";
 import Card from "./components/Card";
 import { Products } from "../../types";
 import {
   dropDisplayedProducts,
   updateDisplayedProducts,
-} from "../../store/process-slice";
+} from "../../store/products/products-slice";
 
 export default function ProductsPage(): JSX.Element {
   const displayedProducts = useSelector(

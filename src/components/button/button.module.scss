@@ -33,6 +33,26 @@
   }
 }
 
+@mixin scroll-button() {
+  color: $base-blue;
+  font-size: 18px;
+  font-weight: bold;
+  width: 52px;
+  height: 52px;
+  padding: 16px;
+  text-align: center;
+  border-radius: 12px;
+  background-color: rgba($base-blue, 0.05);
+  &:hover {
+    color: rgba($base-blue, 0.5);
+    cursor: pointer;
+  }
+  &:disabled {
+    color: rgba($base-blue, 0.5);
+    cursor: default;
+  }
+}
+
 .button {
   padding: 16px;
   text-align: center;
@@ -127,4 +147,36 @@
 .cart_delete-btn {
   @include transparent-icon-button("/img/icons-svg/delete.svg");
   color: $base-red;
+}
+
+.scroll_page-btn {
+  @include scroll-button();
+  &-active {
+    background-color: $base-blue;
+    color: $white;
+    &:hover {
+      color: $white;
+    }
+  }
+}
+.scroll_left-btn {
+  @include scroll-button();
+  background-image: url("/img/icons-svg/arrow-left.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
+.scroll_right-btn {
+  @include scroll-button();
+  background-image: url("/img/icons-svg/arrow-right.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 }

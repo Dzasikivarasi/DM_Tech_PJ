@@ -16,7 +16,7 @@ export default function ProductCardPage(): JSX.Element {
     (state: RootState) => state.products.displayedProducts
   );
   const productsInCart = useSelector((state: RootState) => state.cart.cart);
-  const isLoading = useSelector((state: RootState) => state.cart.loading);
+  const isLoading = useSelector((state: RootState) => state.products.loading);
   const params = useParams<{ id: string }>();
   const navigate = useNavigate();
   const product = displayedProducts.find((product) => product.id === params.id);

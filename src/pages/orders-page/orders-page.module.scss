@@ -1,0 +1,152 @@
+@import "../../../public/base-styles.scss";
+
+.orders {
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+  padding: 8px 24px;
+  cursor: pointer;
+
+  &_list {
+    display: flex;
+    flex-direction: column;
+    align-content: baseline;
+    gap: 24px;
+    margin-top: 25px;
+
+    &-item {
+      @include card-container;
+      @include card-container-animation;
+      display: flex;
+      gap: 16px;
+      border-radius: 10px;
+      padding: 24px;
+
+      &-header {
+        text-align: start;
+
+        &-title {
+          color: $grey;
+        }
+        &-number {
+          font-size: 20px;
+          font-weight: bold;
+          margin-top: 5px;
+        }
+      }
+      &-thumbnails {
+        display: flex;
+        gap: 8px;
+
+        &-card {
+          background: url("/img/no-picture.jpg") center / contain no-repeat;
+          position: relative;
+          height: 48px;
+          width: 48px;
+          border-radius: 5px;
+          overflow: hidden;
+          box-sizing: border-box;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            box-sizing: border-box;
+            overflow: hidden;
+          }
+        }
+      }
+      &-info {
+        text-align: end;
+        margin-left: auto;
+        font-weight: bold;
+        &-date {
+          color: $grey;
+        }
+        &-amount {
+          margin-top: 5px;
+          color: $grey;
+        }
+        span {
+          color: $black;
+        }
+      }
+    }
+  }
+}
+
+.order_info {
+  @include card-container;
+  @include card-container-animation;
+  flex-direction: column;
+  display: flex;
+  border-radius: 10px;
+  padding: 24px;
+
+  &-header {
+    color: $grey;
+    font-size: 18px;
+    span {
+      color: $black;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  &-list {
+    margin-top: 20px;
+
+    &-item {
+      display: grid;
+      align-items: center;
+      justify-content: space-between;
+      grid-template-columns: 150px 50% 20% 80px;
+      margin-top: 5px;
+      border-bottom: solid 1px $light-grey;
+      &-picture {
+        background: url("/img/no-picture.jpg") center / contain no-repeat;
+        width: 150px;
+        height: 150px;
+        position: relative;
+        grid-column: 1 / 2;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          box-sizing: border-box;
+          overflow: hidden;
+        }
+      }
+      &-title {
+        @include text-overflow(3);
+        color: $grey;
+        font-size: 18px;
+        height: auto;
+        grid-column: 2 / 3;
+        max-width: 590px;
+      }
+      &-count {
+        color: $grey;
+        font-weight: bold;
+        grid-column: 3 / 4;
+      }
+      &-price {
+        font-weight: bold;
+        grid-column: 4 / 5;
+      }
+    }
+  }
+  &-result {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 26px;
+    font-weight: 800;
+    &-title {
+      font-size: 20px;
+    }
+  }
+}

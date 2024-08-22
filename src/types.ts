@@ -36,9 +36,15 @@ export type CartItem = {
 
 export type CartItems = CartItem[];
 
-export type UpdateCartRequestData = [
-  {
-    id: string;
-    quantity: number;
-  },
-];
+export type UpdateCartRequestData = {
+  id: string;
+  quantity: number;
+}[];
+
+export type Order = CartItems;
+export type Orders = Order[];
+
+export type GetOrders = {
+  meta: ProductsMeta;
+  data: Order[];
+};

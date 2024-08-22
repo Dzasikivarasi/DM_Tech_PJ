@@ -6,19 +6,10 @@ import { AppRoute } from "../constants";
 import ProductsPage from "../pages/products-page/Products-page";
 import OrdersPage from "../pages/orders-page/Orders-page";
 import NotFound from "../pages/not-found/Not-found";
-import CartPage from "../pages/cart-page/Cart-page";
-import { useEffect } from "react";
-import { getCartAction } from "../store/cart/cart-api";
-import { AppDispatch } from "../store/store";
-import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
+import CartPage from "../pages/cart-page/Cart-page";
 
 export default function App(): JSX.Element {
-  const dispatch: AppDispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getCartAction());
-  }, [dispatch]);
-
   return (
     <BrowserRouter>
       <ToastContainer />

@@ -4,17 +4,21 @@ import { CartItems } from "../../types";
 import { getCartAction, submitCartAction, updateCartAction } from "./cart-api";
 import { LOAD_ERROR } from "../../constants";
 import { updateCartItems } from "./cart-actions";
+import {
+  initLocalStorageCart,
+  saveCartToLocalStorage,
+} from "../../services/localStorage-data";
 
 interface CartInitialStateType {
   cart: CartItems;
   loading: boolean;
-  orders: CartItems;
+  order: CartItems;
 }
 
 const initialState: CartInitialStateType = {
-  cart: [],
+  cart: initLocalStorageCart(),
   loading: true,
-  orders: [],
+  order: [],
 };
 
 const cartSlice = createSlice({
@@ -29,7 +33,6 @@ const cartSlice = createSlice({
       .addCase(getCartAction.fulfilled, (state, action) => {
         state.loading = false;
         state.cart = action.payload;
-        console.log("Cart loaded successfully:", action.payload);
       })
       .addCase(getCartAction.rejected, (state) => {
         state.loading = false;
@@ -40,9 +43,11 @@ const cartSlice = createSlice({
       })
       .addCase(updateCartAction.fulfilled, (state, action) => {
         state.loading = false;
+        console.log("action.payload", action.payload);
         const updatedProduct = action.payload[0];
         state.cart = updateCartItems(state.cart, updatedProduct);
-        console.log("Cart loaded successfully:", state.cart);
+        saveCartToLocalStorage(state.cart);
+        console.log("final cart", state.cart);
       })
       .addCase(updateCartAction.rejected, (state) => {
         state.loading = false;
@@ -53,9 +58,10 @@ const cartSlice = createSlice({
       })
       .addCase(submitCartAction.fulfilled, (state, action) => {
         state.loading = false;
-        state.orders = action.payload;
+        state.order = action.payload;
+        console.log(state.order);
         state.cart = [];
-        console.log("order loaded successfully:", action.payload);
+        saveCartToLocalStorage(state.cart);
         toast.success("Заказ создан");
       })
       .addCase(submitCartAction.rejected, (state) => {

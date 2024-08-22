@@ -3,8 +3,10 @@ export const GET_PRODUCTS_ENDPOINT = "/products";
 export const LOAD_CART_ENDPOINT = "/cart";
 export const UPDATE_CART_ENDPOINT = "/cart/update";
 export const SUBMIT_CART_ENDPOINT = "/cart/submit";
+export const GET_ORDERS_ENDPOINT = "/orders";
 
 export const PRODUCTS_LIMIT_PER_CLICK = 15;
+export const ORDERS_LIMIT_PER_CLICK = 5;
 
 export const LOAD_ERROR = "Ошибка загрузки данных";
 export const UPDATE_CART_ERROR = "Не удалось добавить товар в корзину";

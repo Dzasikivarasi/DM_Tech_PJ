@@ -1,0 +1,19 @@
+@import "../../../public/base-styles.scss";
+
+.scroll {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  width: 31%;
+  max-width: 400px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  &_pages {
+    display: flex;
+    gap: 8px;
+  }
+}

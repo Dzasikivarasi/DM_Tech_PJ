@@ -7,7 +7,6 @@ type RatingProps = {
 export default function Rating({ rating }: RatingProps): JSX.Element {
   return (
     <div className={`${styles.rating}`}>
-      {/* <div className={`${styles.rating__container} ${styles.rating__stars}`}> */}
       <div
         className={`${rating === undefined || rating === 0 ? styles.default_rating : `${styles.rating__container} ${styles.rating__stars}`}`}
       >

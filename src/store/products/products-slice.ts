@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Products, ProductsMeta } from "../types";
+import { Products, ProductsMeta } from "../../types";
 import { toast } from "react-toastify";
-import { LOAD_ERROR } from "../constants";
-import { getProductsAction } from "./process-api";
+import { LOAD_ERROR } from "../../constants";
+import { getProductsAction } from "./products-api";
 
 interface ProductsInitialStateType {
   products: Products;
@@ -45,7 +45,6 @@ const productsSlice = createSlice({
       .addCase(getProductsAction.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload.data;
-
         state.meta.count = action.payload.meta.count;
         state.meta.total = action.payload.meta.total;
       })

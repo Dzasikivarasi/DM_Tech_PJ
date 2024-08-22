@@ -1,13 +1,13 @@
-import styles from "./cart-page.module.scss";
-import CartWidget from "../../components/cart-widget/Cart-widget";
-import { formatNumber } from "../../utils";
+import styles from "../cart-page.module.scss";
 import { Link } from "react-router-dom";
-import { AppRoute } from "../../constants";
-import { CartItem } from "../../types";
-import Button from "../../components/button/Button";
-import { updateCart } from "../../store/cart/cart-actions";
-import { AppDispatch } from "../../store/store";
 import { useDispatch } from "react-redux";
+import Button from "../../../components/button/Button";
+import CartWidget from "../../../components/cart-widget/Cart-widget";
+import { AppRoute } from "../../../constants";
+import { updateCart } from "../../../store/cart/cart-actions";
+import { AppDispatch } from "../../../store/store";
+import { CartItem } from "../../../types";
+import { formatNumber } from "../../../utils";
 
 type CartProductProps = {
   product: CartItem;

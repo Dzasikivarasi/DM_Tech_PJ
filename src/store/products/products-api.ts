@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axiosInstance from "./axios-config";
+import axiosInstance from "../axios-config";
 import {
   BACKEND_URL,
   GET_PRODUCTS_ENDPOINT,
   PRODUCTS_LIMIT_PER_CLICK,
-} from "../constants";
-import { GetProducts } from "../types";
+} from "../../constants";
+import { GetProducts } from "../../types";
 
 export const getProductsAction = createAsyncThunk<
   GetProducts,
