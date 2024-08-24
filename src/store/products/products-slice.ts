@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Product, Products, ProductsMeta } from "../../types";
+import { Product, Products } from "../../types";
 import { toast } from "react-toastify";
 import { LOAD_ERROR } from "../../constants";
 import { getProductByIDAction, getProductsAction } from "./products-api";
@@ -9,7 +9,6 @@ interface ProductsInitialStateType {
   product: Product | null;
   displayedProducts: Products;
   loading: boolean;
-  meta: ProductsMeta;
   productsInCartCount: number;
 }
 
@@ -18,10 +17,6 @@ const initialState: ProductsInitialStateType = {
   product: null,
   displayedProducts: [],
   loading: true,
-  meta: {
-    count: 0,
-    total: 0,
-  },
   productsInCartCount: 0,
 };
 
@@ -47,8 +42,6 @@ const productsSlice = createSlice({
       .addCase(getProductsAction.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload.data;
-        state.meta.count = action.payload.meta.count;
-        state.meta.total = action.payload.meta.total;
       })
       .addCase(getProductsAction.rejected, (state) => {
         state.loading = false;
