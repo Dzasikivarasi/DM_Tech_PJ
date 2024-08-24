@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Products, ProductsMeta } from "../../types";
+import { Product, Products, ProductsMeta } from "../../types";
 import { toast } from "react-toastify";
 import { LOAD_ERROR } from "../../constants";
-import { getProductsAction } from "./products-api";
+import { getProductByIDAction, getProductsAction } from "./products-api";
 
 interface ProductsInitialStateType {
   products: Products;
+  product: Product | null;
   displayedProducts: Products;
   loading: boolean;
   meta: ProductsMeta;
@@ -14,6 +15,7 @@ interface ProductsInitialStateType {
 
 const initialState: ProductsInitialStateType = {
   products: [],
+  product: null,
   displayedProducts: [],
   loading: true,
   meta: {
@@ -49,6 +51,17 @@ const productsSlice = createSlice({
         state.meta.total = action.payload.meta.total;
       })
       .addCase(getProductsAction.rejected, (state) => {
+        state.loading = false;
+        toast(LOAD_ERROR);
+      })
+      .addCase(getProductByIDAction.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getProductByIDAction.fulfilled, (state, action) => {
+        state.loading = false;
+        state.product = action.payload;
+      })
+      .addCase(getProductByIDAction.rejected, (state) => {
         state.loading = false;
         toast(LOAD_ERROR);
       });

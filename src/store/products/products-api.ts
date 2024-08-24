@@ -5,7 +5,7 @@ import {
   GET_PRODUCTS_ENDPOINT,
   PRODUCTS_LIMIT_PER_CLICK,
 } from "../../constants";
-import { GetProducts } from "../../types";
+import { GetProducts, Product } from "../../types";
 
 export const getProductsAction = createAsyncThunk<
   GetProducts,
@@ -26,3 +26,22 @@ export const getProductsAction = createAsyncThunk<
   );
   return response.data;
 });
+
+export const getProductByIDAction = createAsyncThunk<Product, { id: string }>(
+  "product/loading",
+  async ({ id }) => {
+    const response = await axiosInstance.get<Product>(
+      `${BACKEND_URL}${GET_PRODUCTS_ENDPOINT}/${id}`,
+      {
+        params: {
+          id,
+        },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
+    return response.data;
+  }
+);

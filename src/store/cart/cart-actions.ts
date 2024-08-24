@@ -4,23 +4,23 @@ import { updateCartAction } from "./cart-api";
 
 export const updateCartItems = (
   cart: CartItems,
-  updatedProduct: CartItems[number]
+  updatedProducts: CartItems
 ): CartItems => {
-  const productExists = cart.some(
-    (product) => product.product.id === updatedProduct.product.id
-  );
-
-  if (productExists) {
-    return cart
-      .map((product) =>
-        product.product.id === updatedProduct.product.id
-          ? { ...product, quantity: updatedProduct.quantity }
-          : product
-      )
-      .filter((product) => product.quantity >= 0);
-  } else {
-    return [...cart, updatedProduct];
-  }
+  const updatedCart = [...cart];
+  updatedProducts.forEach((updatedProduct) => {
+    const productIndex = updatedCart.findIndex(
+      (product) => product.product.id === updatedProduct.product.id
+    );
+    if (productIndex !== -1) {
+      updatedCart[productIndex] = {
+        ...updatedCart[productIndex],
+        quantity: updatedProduct.quantity,
+      };
+    } else {
+      updatedCart.push(updatedProduct);
+    }
+  });
+  return updatedCart.filter((product) => product.quantity >= 0);
 };
 
 export const updateCart = (

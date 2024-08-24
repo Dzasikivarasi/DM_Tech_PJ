@@ -79,10 +79,20 @@
 .order_info {
   @include card-container;
   @include card-container-animation;
+  position: relative;
   flex-direction: column;
   display: flex;
   border-radius: 10px;
   padding: 24px;
+  margin: 20px 0;
+  cursor: default;
+
+  &-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    cursor: pointer;
+  }
 
   &-header {
     color: $grey;
@@ -101,15 +111,17 @@
       display: grid;
       align-items: center;
       justify-content: space-between;
+      padding: 10px;
       grid-template-columns: 150px 50% 20% 80px;
       margin-top: 5px;
       border-bottom: solid 1px $light-grey;
       &-picture {
         background: url("/img/no-picture.jpg") center / contain no-repeat;
-        width: 150px;
-        height: 150px;
+        width: 80px;
+        height: 80px;
         position: relative;
         grid-column: 1 / 2;
+        cursor: pointer;
 
         img {
           width: 100%;

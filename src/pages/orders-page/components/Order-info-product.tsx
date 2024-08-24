@@ -1,21 +1,45 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "../orders-page.module.scss";
+import { CartItem } from "../../../types";
+import { formatNumber } from "../../../utils";
+import { AppRoute } from "../../../constants";
+import { AppDispatch } from "../../../store/store";
+import { useDispatch } from "react-redux";
+import { getProductByIDAction } from "../../../store/products/products-api";
 
-export default function OrderInfoProduct(): JSX.Element {
+type OrderInfoProductProps = {
+  product: CartItem;
+};
+
+export default function OrderInfoProduct({
+  product,
+}: OrderInfoProductProps): JSX.Element {
+  const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+  const onLoadProductClick = async () => {
+    await dispatch(getProductByIDAction({ id: product.product.id }));
+    navigate(`${AppRoute.Products}/${product.product.id}`);
+  };
+
   return (
     <li className={styles["order_info-list-item"]}>
-      <Link to="">
-        <div className={styles["order_info-list-item-picture"]}>
-          <img
-            src={"/img/no-picture.jpg"}
-            alt="Фото товара"
-            onError={(e) => (e.currentTarget.style.display = "none")}
-          />
-        </div>
-      </Link>
-      <p className={styles["order_info-list-item-title"]}>Куртка Futurino</p>
-      <p className={styles["order_info-list-item-count"]}>1 299 ₽ * 12 шт.</p>
-      <p className={styles["order_info-list-item-price"]}>5 000 ₽</p>
+      <div className={styles["order_info-list-item-picture"]}>
+        <img
+          src={product.product.picture}
+          alt="Фото товара"
+          onClick={onLoadProductClick}
+          onError={(e) => (e.currentTarget.style.display = "none")}
+        />
+      </div>
+      <p className={styles["order_info-list-item-title"]}>
+        {product.product.title}
+      </p>
+      <p className={styles["order_info-list-item-count"]}>
+        {formatNumber(product.product.price)} ₽ * {product.quantity} шт.
+      </p>
+      <p className={styles["order_info-list-item-price"]}>
+        {formatNumber(product.product.price)} ₽
+      </p>
     </li>
   );
 }

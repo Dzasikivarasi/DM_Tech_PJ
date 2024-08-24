@@ -3,23 +3,21 @@ import Button from "../../components/button/Button";
 import Rating from "../../components/rating/Rating";
 import styles from "./product-card.module.scss";
 import { AppDispatch, RootState } from "../../store/store";
-import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import { AppRoute } from "../../constants";
 import { formatNumber } from "../../utils";
 import DOMPurify from "dompurify";
 import CartWidget from "../../components/cart-widget/Cart-widget";
 import { updateCart } from "../../store/cart/cart-actions";
+import { useEffect } from "react";
+import { getProductByIDAction } from "../../store/products/products-api";
 
 export default function ProductCardPage(): JSX.Element {
-  const displayedProducts = useSelector(
-    (state: RootState) => state.products.displayedProducts
-  );
   const productsInCart = useSelector((state: RootState) => state.cart.cart);
   const isLoading = useSelector((state: RootState) => state.products.loading);
   const params = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const product = displayedProducts.find((product) => product.id === params.id);
+  const product = useSelector((state: RootState) => state.products.product);
   const quantity = productsInCart.find(
     (product) => product.product.id === params.id
   )?.quantity;
@@ -29,15 +27,19 @@ export default function ProductCardPage(): JSX.Element {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    const { id } = params;
-    const productExists = displayedProducts.find(
-      (product) => product.id === id
-    );
-
-    if (!productExists) {
-      navigate(AppRoute.NotFound);
-    }
-  }, [params, navigate, displayedProducts]);
+    const fetchProduct = async () => {
+      try {
+        if (params.id) {
+          await dispatch(getProductByIDAction({ id: params.id }));
+        } else {
+          navigate(AppRoute.NotFound);
+        }
+      } catch (error) {
+        navigate(AppRoute.NotFound);
+      }
+    };
+    fetchProduct();
+  }, []);
 
   const onReturnButtonClick = () => {
     navigate(AppRoute.Products);
@@ -55,7 +57,8 @@ export default function ProductCardPage(): JSX.Element {
   };
 
   if (!product) {
-    return <div>Загрузка...</div>;
+    navigate(AppRoute.NotFound);
+    return <div>Товар не найден</div>;
   }
   const cleanHtml = DOMPurify.sanitize(product.description || "");
 
