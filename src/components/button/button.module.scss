@@ -3,11 +3,12 @@
 @mixin transparent-icon-button($url) {
   position: relative;
   background-color: transparent;
-  padding: 16px 0px 16px 24px;
+  // padding: 16px 0px 16px 24px;
+  padding-left: 24px;
   &::before {
     content: "";
     position: absolute;
-    bottom: 30%;
+    bottom: 10%;
     left: 0%;
     width: 20px;
     height: 20px;
@@ -54,7 +55,7 @@
 }
 
 .button {
-  padding: 16px;
+  // padding: 16px;
   text-align: center;
   border: none;
   cursor: pointer;
