@@ -3,6 +3,10 @@ import { toast } from "react-toastify";
 import { LOAD_ERROR } from "../../constants";
 import { Orders, ProductsMeta } from "../../types";
 import { getOrdersAction } from "./orders-api";
+import {
+  initLocalStorageOrders,
+  saveOrdersToLocalStorage,
+} from "../../services/localStorage-data";
 
 interface OrdersInitialStateType {
   orders: Orders;
@@ -11,7 +15,7 @@ interface OrdersInitialStateType {
 }
 
 const initialState: OrdersInitialStateType = {
-  orders: [],
+  orders: initLocalStorageOrders(),
   meta: null,
   loading: true,
 };
@@ -30,6 +34,7 @@ const ordersSlice = createSlice({
         state.meta = action.payload.meta;
         console.log("Страница:", action.payload.meta);
         state.orders = action.payload.data;
+        saveOrdersToLocalStorage(state.orders);
         console.log("Заказы", action.payload.data);
       })
       .addCase(getOrdersAction.rejected, (state) => {

@@ -12,13 +12,11 @@ import {
 interface CartInitialStateType {
   cart: CartItems;
   loading: boolean;
-  order: CartItems;
 }
 
 const initialState: CartInitialStateType = {
   cart: initLocalStorageCart(),
   loading: true,
-  order: [],
 };
 
 const cartSlice = createSlice({
@@ -56,10 +54,8 @@ const cartSlice = createSlice({
       .addCase(submitCartAction.pending, (state) => {
         state.loading = true;
       })
-      .addCase(submitCartAction.fulfilled, (state, action) => {
+      .addCase(submitCartAction.fulfilled, (state) => {
         state.loading = false;
-        state.order = action.payload;
-        console.log(state.order);
         state.cart = [];
         saveCartToLocalStorage(state.cart);
         toast.success("Заказ создан");
