@@ -17,7 +17,7 @@
   &_menu {
     display: flex;
     gap: 16px;
-    padding-right: 80px;
+    padding-right: 40px;
 
     @media (max-width: 800px) {
       padding-right: 0px;
@@ -51,7 +51,7 @@
       top: 50px;
       left: 0;
       background-color: $background-blue;
-      width: 100vw;
+      width: calc(100vw - 50px);
       height: 100vh;
       transition: transform 0.3s ease-in-out;
       z-index: 10;

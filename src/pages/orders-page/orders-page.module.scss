@@ -6,6 +6,10 @@
   margin: 0 auto;
   padding: 8px 24px;
   cursor: pointer;
+  @media (max-width: 1300px) {
+    width: 100%;
+    padding: 8px 0px 50px;
+  }
 
   &_list {
     display: flex;
@@ -21,6 +25,10 @@
       gap: 16px;
       border-radius: 10px;
       padding: 24px;
+
+      @media (max-width: 650px) {
+        flex-wrap: wrap;
+      }
 
       &-header {
         text-align: start;
@@ -61,6 +69,11 @@
         text-align: end;
         margin-left: auto;
         font-weight: bold;
+        @media (max-width: 650px) {
+          text-align: start;
+          margin-right: auto;
+          margin-left: 0;
+        }
         &-date {
           color: $grey;
         }
