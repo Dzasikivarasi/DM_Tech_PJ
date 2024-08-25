@@ -15,7 +15,7 @@ export default function BurgerIcon({
     <img
       onClick={onClickHandler}
       className={styles["header_mobile"]}
-      src="/img/icons-svg/mobile-menu.svg"
+      src="/DM_Tech_PJ/img/icons-svg/mobile-menu.svg"
       alt="меню"
     />
   );
