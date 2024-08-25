@@ -1,0 +1,123 @@
+// Обнуление дефолтных стилей
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+// Общие шрифты
+@font-face {
+  font-family: "Nunito";
+  src:
+    url("./fonts/Nunito-Regular.woff2") format("woff2"),
+    url("./fonts/Nunito-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src:
+    url("./fonts/Nunito-Bold.woff2") format("woff2"),
+    url("./fonts/Nunito-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src:
+    url("./fonts/Nunito-ExtraBold.woff2") format("woff2"),
+    url("./fonts/Nunito-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+// Базовые цвета
+$base-blue: #0073e6;
+$middle-blue: #338feb;
+$light-blue: #89b7e5;
+$light-grey-blue: #e6f1fc;
+$background-blue: #f2f6fa;
+$base-red: #ed2c19;
+$light-red: #f15647;
+$base-yellow: #fabc22;
+$white: #ffffff;
+$black: #172029;
+$grey: #808080;
+$light-grey: #f2f2f2;
+
+body {
+  font-family: "Nunito", sans-serif;
+}
+
+.container {
+  background-color: $background-blue;
+  padding: 12px 32px 40px;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+}
+
+@mixin card-container {
+  background-color: $white;
+  border-radius: 20px;
+  border: solid 2px $white;
+  cursor: pointer;
+}
+
+@mixin card-container-animation {
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@mixin text-overflow($lines-lount) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines-lount;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
