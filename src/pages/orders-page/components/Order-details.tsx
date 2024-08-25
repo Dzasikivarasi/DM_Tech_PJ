@@ -1,5 +1,5 @@
 import styles from "../orders-page.module.scss";
-import Button from "../../../components/button/Button";
+import Button from "../../../UI/button/Button";
 import OrderInfoProduct from "./Order-info-product";
 import { useDispatch } from "react-redux";
 import { Order, UpdateCartRequestData } from "../../../types";
@@ -7,6 +7,8 @@ import { formatNumber } from "../../../utils";
 import { AppDispatch } from "../../../store/store";
 import { updateCartAction } from "../../../store/cart/cart-api";
 import { toast } from "react-toastify";
+import { useEffect, useRef } from "react";
+import { DUPLICATE_ORDER_NOTIFICATION } from "../../../constants";
 
 type OrderDetailsProps = {
   order: Order;
@@ -22,6 +24,13 @@ export default function OrderDetails({
   hideOrder,
 }: OrderDetailsProps): JSX.Element {
   const dispatch: AppDispatch = useDispatch();
+  const componentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (componentRef.current) {
+      componentRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
 
   const copyOrder = (): void => {
     const finalCart: UpdateCartRequestData = [];
@@ -32,7 +41,7 @@ export default function OrderDetails({
       });
     });
     dispatch(updateCartAction(finalCart));
-    toast.success("Заказ скопирован в корзину");
+    toast.success(DUPLICATE_ORDER_NOTIFICATION);
   };
 
   const onCopyOrderClick = (): void => {
@@ -40,7 +49,7 @@ export default function OrderDetails({
   };
 
   return (
-    <div className={styles["order_info"]}>
+    <div className={styles["order_info"]} ref={componentRef}>
       <p className={styles["order_info-header"]}>
         Заказ <span>№{orderNum}</span>
       </p>

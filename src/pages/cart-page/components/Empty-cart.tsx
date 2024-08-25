@@ -1,5 +1,5 @@
 import styles from "../cart-page.module.scss";
-import Button from "../../../components/button/Button";
+import Button from "../../../UI/button/Button";
 import { AppRoute } from "../../../constants";
 import { useNavigate } from "react-router";
 

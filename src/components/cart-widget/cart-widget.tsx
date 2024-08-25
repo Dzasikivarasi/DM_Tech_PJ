@@ -1,5 +1,5 @@
 import styles from "./cart-widget.module.scss";
-import Button from "../button/Button";
+import Button from "../../UI/button/Button";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/store";
 import { updateCount } from "../../utils";

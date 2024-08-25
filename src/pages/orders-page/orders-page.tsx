@@ -22,8 +22,8 @@ export default function OrdersPage(): JSX.Element {
             <OrderCard key={index} order={orderGroup} />
           ))}
         </ul>
+        <PagesScroll />
       </div>
-      <PagesScroll />
     </>
   );
 }

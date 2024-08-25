@@ -1,5 +1,5 @@
 import styles from "./cart-page.module.scss";
-import Button from "../../components/button/Button";
+import Button from "../../UI/button/Button";
 import Loader from "../../components/loader/Loader";
 import EmptyCart from "./components/Empty-cart";
 import CartProduct from "./components/Cart-product";
@@ -10,6 +10,7 @@ import { formatNumber } from "../../utils";
 import { submitCartAction, updateCartAction } from "../../store/cart/cart-api";
 import { CartItems, UpdateCartRequestData } from "../../types";
 import { toast } from "react-toastify";
+import { CREATE_ORDER_ERROR, EMPTY_CART_ERROR } from "../../constants";
 
 export default function CartPage(): JSX.Element {
   const productsInCart = useSelector((state: RootState) => state.cart.cart);
@@ -44,10 +45,10 @@ export default function CartPage(): JSX.Element {
         await dispatch(updateCartAction(finalCart));
         await dispatch(submitCartAction());
       } catch (error) {
-        toast.error("Возникла ошибка при оформлении заказа.");
+        toast.error(CREATE_ORDER_ERROR);
       }
     } else {
-      toast.warning("В корзине нет товаров для отправки");
+      toast.warning(EMPTY_CART_ERROR);
     }
   };
 

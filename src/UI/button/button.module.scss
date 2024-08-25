@@ -53,7 +53,7 @@
   }
 }
 
-.button {
+@mixin base-button() {
   text-align: center;
   border: none;
   cursor: pointer;
@@ -64,6 +64,7 @@
 
 // Базовая кнопка
 .submit-btn {
+  @include base-button();
   background-color: $base-blue;
   padding: 16px 16px;
   border-radius: 12px;
@@ -87,6 +88,7 @@
 
 // Кнопки меню
 .header_menu-btn {
+  @include base-button();
   background-color: transparent;
   color: $black;
 
@@ -108,12 +110,14 @@
 
 // Кнопка корзины
 .header_cart-btn {
+  @include base-button();
   @include transparent-icon-button("/img/icons-svg/cart.svg");
   color: $black;
 }
 
 // Кнопка "назад"
 .return-btn {
+  @include base-button();
   @include transparent-icon-button("/img/icons-svg/arrow-left.svg");
   color: $base-blue;
 }
@@ -121,11 +125,13 @@
 // Кнопка управления товарами
 .cart-widget-btn {
   &-right {
+    @include base-button();
     @include widget-button();
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
   }
   &-left {
+    @include base-button();
     @include widget-button();
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
@@ -133,6 +139,7 @@
 }
 
 .cart-btn {
+  @include base-button();
   background-color: $base-blue;
   padding: 16px 0;
   border-radius: 12px;
@@ -145,11 +152,13 @@
 }
 
 .cart_delete-btn {
+  @include base-button();
   @include transparent-icon-button("/img/icons-svg/delete.svg");
   color: $base-red;
 }
 
 .scroll_page-btn {
+  @include base-button();
   @include scroll-button();
   &-active {
     background-color: $base-blue;
@@ -160,6 +169,7 @@
   }
 }
 .scroll_left-btn {
+  @include base-button();
   @include scroll-button();
   background-image: url("/img/icons-svg/arrow-left.svg");
   background-repeat: no-repeat;
@@ -171,6 +181,7 @@
 }
 
 .scroll_right-btn {
+  @include base-button();
   @include scroll-button();
   background-image: url("/img/icons-svg/arrow-right.svg");
   background-repeat: no-repeat;

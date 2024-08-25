@@ -1,5 +1,5 @@
 import styles from "./product-card.module.scss";
-import Button from "../../components/button/Button";
+import Button from "../../UI/button/Button";
 import Rating from "../../components/rating/Rating";
 import { useDispatch, useSelector } from "react-redux";
 import CartWidget from "../../components/cart-widget/Cart-widget";

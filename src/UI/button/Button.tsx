@@ -25,7 +25,7 @@ export default function Button({
     <>
       <div>
         <button
-          className={`${styles.button} ${styles[className]} ${
+          className={`${styles[className]} ${
             classActive ? styles[`${className}-active`] : ""
           }`}
           onClick={onButtonClick}

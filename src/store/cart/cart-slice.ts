@@ -2,7 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { CartItems } from "../../types";
 import { getCartAction, submitCartAction, updateCartAction } from "./cart-api";
-import { LOAD_ERROR } from "../../constants";
+import {
+  CREATE_ORDER_ERROR,
+  CREATE_ORDER_NOTIFICATION,
+  LOAD_ERROR,
+} from "../../constants";
 import { updateCartItems } from "./cart-actions";
 import {
   initLocalStorageCart,
@@ -56,11 +60,11 @@ const cartSlice = createSlice({
         state.loading = false;
         state.cart = [];
         saveCartToLocalStorage(state.cart);
-        toast.success("Заказ создан");
+        toast.success(CREATE_ORDER_NOTIFICATION);
       })
       .addCase(submitCartAction.rejected, (state) => {
         state.loading = false;
-        toast.error("Ошибка при оформлении заказа");
+        toast.error(CREATE_ORDER_ERROR);
       });
   },
 });

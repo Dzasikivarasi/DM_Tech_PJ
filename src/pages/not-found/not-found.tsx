@@ -1,7 +1,7 @@
 import styles from "./not-found.module.scss";
 import { useNavigate } from "react-router-dom";
-import { AppRoute } from "../../constants";
-import Button from "../../components/button/Button";
+import { AppRoute, NOT_FOUND_PAGE_TEXT } from "../../constants";
+import Button from "../../UI/button/Button";
 
 export default function NotFound(): JSX.Element {
   const navigate = useNavigate();
@@ -11,9 +11,7 @@ export default function NotFound(): JSX.Element {
   };
   return (
     <div className={styles["not-found"]}>
-      <p className={styles["not-found_message"]}>
-        Такой страницы не существует
-      </p>
+      <p className={styles["not-found_message"]}>{NOT_FOUND_PAGE_TEXT}</p>
       <Button
         className="submit-btn"
         buttonText={"На главную"}

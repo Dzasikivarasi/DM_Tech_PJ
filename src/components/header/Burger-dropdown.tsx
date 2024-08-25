@@ -1,5 +1,5 @@
 import styles from "./header.module.scss";
-import Button from "../button/Button";
+import Button from "../../UI/button/Button";
 
 type BurgerDropdownProps = {
   onProductsButtonClick: () => void;

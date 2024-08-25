@@ -1,5 +1,5 @@
 import styles from "../cart-page.module.scss";
-import Button from "../../../components/button/Button";
+import Button from "../../../UI/button/Button";
 import CartWidget from "../../../components/cart-widget/Cart-widget";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";

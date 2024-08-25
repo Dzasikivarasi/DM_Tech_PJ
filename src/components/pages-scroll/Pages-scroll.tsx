@@ -1,5 +1,5 @@
 import styles from "./pages-scroll.module.scss";
-import Button from "../button/Button";
+import Button from "../../UI/button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { getOrdersAction } from "../../store/orders/orders-api";
