@@ -17,7 +17,6 @@ export default function PagesScroll(): JSX.Element {
   const onButtonClick = (pageNumber: number) => {
     dispatch(getOrdersAction({ page: pageNumber }));
     setActivePage(pageNumber);
-    console.log("pageNumber");
   };
 
   const updatePage = (newPage: number) => {
@@ -30,13 +29,11 @@ export default function PagesScroll(): JSX.Element {
   const onRightButtonClick = (): void => {
     const newPage = updateCount(activePage, "increment", pages);
     updatePage(newPage);
-    console.log(newPage);
   };
 
   const onLeftButtonClick = (): void => {
     const newPage = updateCount(activePage, "decrement", pages);
     updatePage(newPage);
-    console.log(newPage);
   };
 
   return (

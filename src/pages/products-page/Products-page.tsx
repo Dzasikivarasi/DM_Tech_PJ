@@ -65,9 +65,6 @@ export default function ProductsPage(): JSX.Element {
         setloadingNewPage(false);
       };
       loadProducts();
-      console.log("clicked");
-      console.log(page);
-      console.log(displayedProducts);
     }
   }, [loadingNewPage]);
 

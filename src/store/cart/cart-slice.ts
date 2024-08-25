@@ -41,11 +41,9 @@ const cartSlice = createSlice({
       })
       .addCase(updateCartAction.fulfilled, (state, action) => {
         state.loading = false;
-        console.log("action.payload", action.payload);
         const updatedProducts = action.payload;
         state.cart = updateCartItems(state.cart, updatedProducts);
         saveCartToLocalStorage(state.cart);
-        console.log("final cart", state.cart);
       })
       .addCase(updateCartAction.rejected, (state) => {
         state.loading = false;

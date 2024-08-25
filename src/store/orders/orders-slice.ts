@@ -32,10 +32,8 @@ const ordersSlice = createSlice({
       .addCase(getOrdersAction.fulfilled, (state, action) => {
         state.loading = false;
         state.meta = action.payload.meta;
-        console.log("Страница:", action.payload.meta);
         state.orders = action.payload.data;
         saveOrdersToLocalStorage(state.orders);
-        console.log("Заказы", action.payload.data);
       })
       .addCase(getOrdersAction.rejected, (state) => {
         state.loading = false;

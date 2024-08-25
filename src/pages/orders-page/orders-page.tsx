@@ -12,7 +12,6 @@ export default function OrdersPage(): JSX.Element {
 
   useEffect(() => {
     dispatch(getOrdersAction({ page: 1 }));
-    console.log(orders);
   }, []);
 
   return (
