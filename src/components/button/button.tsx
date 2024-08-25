@@ -15,7 +15,7 @@ export default function Button({
   buttonClickHandler,
   disabled,
 }: ButtonProps): JSX.Element {
-  const onButtonClick = () => {
+  const onButtonClick = (): void => {
     if (buttonClickHandler) {
       buttonClickHandler();
     }

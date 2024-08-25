@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import Button from "../button/Button";
 import styles from "./pages-scroll.module.scss";
+import Button from "../button/Button";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { getOrdersAction } from "../../store/orders/orders-api";
 import { ORDERS_LIMIT_PER_CLICK } from "../../constants";
@@ -27,13 +27,13 @@ export default function PagesScroll(): JSX.Element {
     }
   };
 
-  const onRightButtonClick = () => {
+  const onRightButtonClick = (): void => {
     const newPage = updateCount(activePage, "increment", pages);
     updatePage(newPage);
     console.log(newPage);
   };
 
-  const onLeftButtonClick = () => {
+  const onLeftButtonClick = (): void => {
     const newPage = updateCount(activePage, "decrement", pages);
     updatePage(newPage);
     console.log(newPage);

@@ -1,9 +1,9 @@
+import styles from "../orders-page.module.scss";
+import OrderDetails from "./Order-details";
 import { Order } from "../../../types";
 import { formatNumber } from "../../../utils";
 import { consecutiveUniqueRandom } from "unique-random";
-import styles from "../orders-page.module.scss";
 import { useState } from "react";
-import OrderDetails from "./Order-details";
 
 type OrderCardProps = {
   order: Order;
@@ -19,7 +19,7 @@ export default function OrderCard({ order }: OrderCardProps): JSX.Element {
   const generateRandomOrderNum = consecutiveUniqueRandom(100000, 999999);
   const randomOrderNum = generateRandomOrderNum();
 
-  const orderClickHandler = () => {
+  const orderClickHandler = (): void => {
     setShowDetails(true);
   };
 

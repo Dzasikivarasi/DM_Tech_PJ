@@ -1,9 +1,9 @@
-import { useDispatch } from "react-redux";
+import styles from "../orders-page.module.scss";
 import Button from "../../../components/button/Button";
+import OrderInfoProduct from "./Order-info-product";
+import { useDispatch } from "react-redux";
 import { Order, UpdateCartRequestData } from "../../../types";
 import { formatNumber } from "../../../utils";
-import styles from "../orders-page.module.scss";
-import OrderInfoProduct from "./Order-info-product";
 import { AppDispatch } from "../../../store/store";
 import { updateCartAction } from "../../../store/cart/cart-api";
 import { toast } from "react-toastify";
@@ -35,7 +35,7 @@ export default function OrderDetails({
     toast.success("Заказ скопирован в корзину");
   };
 
-  const onCopyOrderClick = () => {
+  const onCopyOrderClick = (): void => {
     copyOrder();
   };
 

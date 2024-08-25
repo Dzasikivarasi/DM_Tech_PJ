@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import OrderCard from "./components/Order-card";
 import styles from "./orders-page.module.scss";
+import OrderCard from "./components/Order-card";
+import PagesScroll from "../../components/pages-scroll/Pages-scroll";
+import { useEffect } from "react";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrdersAction } from "../../store/orders/orders-api";
-import PagesScroll from "../../components/pages-scroll/Pages-scroll";
 
 export default function OrdersPage(): JSX.Element {
   const orders = useSelector((state: RootState) => state.orders.orders);

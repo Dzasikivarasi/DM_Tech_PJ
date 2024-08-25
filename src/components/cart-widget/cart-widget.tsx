@@ -1,8 +1,8 @@
+import styles from "./cart-widget.module.scss";
+import Button from "../button/Button";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/store";
 import { updateCount } from "../../utils";
-import Button from "../button/Button";
-import styles from "./cart-widget.module.scss";
 import { updateCart } from "../../store/cart/cart-actions";
 import { MAX_PRODUCT_QUANTITY, MIN_PRODUCT_QUANTITY } from "../../constants";
 
@@ -22,12 +22,12 @@ export default function CartWidget({
   const isDecrementDisabled = quantity <= MIN_PRODUCT_QUANTITY;
   const isIncrementDisabled = quantity >= MAX_PRODUCT_QUANTITY;
 
-  const onDecrementButtonClick = () => {
+  const onDecrementButtonClick = (): void => {
     const newQuantity = updateCount(quantity, "decrement");
     updateCart(dispatch, id, newQuantity, isFromCartPage);
   };
 
-  const onIncrementButtonClick = () => {
+  const onIncrementButtonClick = (): void => {
     const newQuantity = updateCount(quantity, "increment");
     updateCart(dispatch, id, newQuantity, isFromCartPage);
   };

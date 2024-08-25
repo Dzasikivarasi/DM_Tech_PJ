@@ -1,8 +1,8 @@
 import styles from "../cart-page.module.scss";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import Button from "../../../components/button/Button";
 import CartWidget from "../../../components/cart-widget/Cart-widget";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { AppRoute } from "../../../constants";
 import { updateCart } from "../../../store/cart/cart-actions";
 import { AppDispatch } from "../../../store/store";
@@ -19,7 +19,7 @@ export default function CartProduct({
   const finalProductSum = product.product.price * product.quantity;
   const dispatch: AppDispatch = useDispatch();
 
-  const onDeleteButtonClick = () => {
+  const onDeleteButtonClick = (): void => {
     updateCart(dispatch, product.product.id, -1, true);
   };
 

@@ -1,20 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
 import styles from "./cart-page.module.scss";
 import Button from "../../components/button/Button";
 import Loader from "../../components/loader/Loader";
+import EmptyCart from "./components/Empty-cart";
+import CartProduct from "./components/Cart-product";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store/store";
 import { useEffect, useState } from "react";
 import { formatNumber } from "../../utils";
 import { submitCartAction, updateCartAction } from "../../store/cart/cart-api";
-import EmptyCart from "./components/Empty-cart";
-import CartProduct from "./components/Cart-product";
 import { CartItems, UpdateCartRequestData } from "../../types";
 import { toast } from "react-toastify";
 
 export default function CartPage(): JSX.Element {
   const productsInCart = useSelector((state: RootState) => state.cart.cart);
   const loadingStatus = useSelector((state: RootState) => state.cart.loading);
-
   const [initialLoad, setInitialLoad] = useState(true);
   const showLoader = initialLoad && loadingStatus;
   const finalSum = productsInCart.reduce((sum, item) => {

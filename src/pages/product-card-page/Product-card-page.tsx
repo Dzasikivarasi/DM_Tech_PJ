@@ -1,13 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
+import styles from "./product-card.module.scss";
 import Button from "../../components/button/Button";
 import Rating from "../../components/rating/Rating";
-import styles from "./product-card.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import CartWidget from "../../components/cart-widget/Cart-widget";
 import { AppDispatch, RootState } from "../../store/store";
 import { useNavigate, useParams } from "react-router";
 import { AppRoute } from "../../constants";
 import { formatNumber } from "../../utils";
 import DOMPurify from "dompurify";
-import CartWidget from "../../components/cart-widget/Cart-widget";
 import { updateCart } from "../../store/cart/cart-actions";
 import { useEffect } from "react";
 import { getProductByIDAction } from "../../store/products/products-api";
@@ -41,18 +41,18 @@ export default function ProductCardPage(): JSX.Element {
     fetchProduct();
   }, []);
 
-  const onReturnButtonClick = () => {
+  const onReturnButtonClick = (): void => {
     navigate(AppRoute.Products);
   };
 
-  const onAddButtonClick = () => {
+  const onAddButtonClick = (): void => {
     if (!params.id) return;
     const id = params.id;
     const currentQuantity = quantity || 0;
     updateCart(dispatch, id, currentQuantity + 1, false);
   };
 
-  const onCreateOrderClick = () => {
+  const onCreateOrderClick = (): void => {
     navigate(AppRoute.Cart);
   };
 

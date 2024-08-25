@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import styles from "../orders-page.module.scss";
+import { useNavigate } from "react-router-dom";
 import { CartItem } from "../../../types";
 import { formatNumber } from "../../../utils";
 import { AppRoute } from "../../../constants";

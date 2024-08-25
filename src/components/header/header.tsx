@@ -1,11 +1,11 @@
 import styles from "./header.module.scss";
 import Button from "../button/Button";
+import BurgerMenu from "./Burger-menu";
 import { useNavigate } from "react-router-dom";
 import { AppRoute } from "../../constants";
 import { useState } from "react";
 import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
-import BurgerMenu from "./Burger-menu";
 
 export default function Header(): JSX.Element {
   const [activeProductsPage, setActivePpoductsPage] = useState<boolean>(true);
@@ -14,28 +14,28 @@ export default function Header(): JSX.Element {
   const productsInCart = useSelector((state: RootState) => state.cart.cart);
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
 
-  const onProductsButtonClick = () => {
+  const onProductsButtonClick = (): void => {
     navigate(AppRoute.Products);
     setActivePpoductsPage(true);
     setActiveOrdersPage(false);
     setMenuIsOpen(false);
   };
 
-  const onOrdersButtonClick = () => {
+  const onOrdersButtonClick = (): void => {
     navigate(AppRoute.Orders);
     setActivePpoductsPage(false);
     setActiveOrdersPage(true);
     setMenuIsOpen(false);
   };
 
-  const onCartButtonClick = () => {
+  const onCartButtonClick = (): void => {
     navigate(AppRoute.Cart);
     setActivePpoductsPage(false);
     setActiveOrdersPage(false);
     setMenuIsOpen(false);
   };
 
-  const onLogoClick = () => {
+  const onLogoClick = (): void => {
     navigate(AppRoute.Products);
     setActivePpoductsPage(true);
     setActiveOrdersPage(false);

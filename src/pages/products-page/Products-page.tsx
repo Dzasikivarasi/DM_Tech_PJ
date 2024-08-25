@@ -1,11 +1,11 @@
 import styles from "./products.module.scss";
 import Loader from "../../components/loader/Loader";
+import Card from "./components/Card";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getProductsAction } from "../../store/products/products-api";
-import Card from "./components/Card";
 import { Products } from "../../types";
 import {
   dropDisplayedProducts,
@@ -38,7 +38,7 @@ export default function ProductsPage(): JSX.Element {
     initProducts();
   }, []);
 
-  const scrollHandler = () => {
+  const scrollHandler = (): void => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
     if (scrollHeight - scrollTop <= clientHeight + 100) {
       setloadingNewPage(true);

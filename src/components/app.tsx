@@ -1,13 +1,13 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import ProductCardPage from "../pages/product-card-page/Product-card-page";
 import "react-toastify/dist/ReactToastify.css";
-import Layout from "./Layout";
-import { AppRoute } from "../constants";
+import ProductCardPage from "../pages/product-card-page/Product-card-page";
+import CartPage from "../pages/cart-page/Cart-page";
 import ProductsPage from "../pages/products-page/Products-page";
 import OrdersPage from "../pages/orders-page/Orders-page";
 import NotFound from "../pages/not-found/Not-found";
+import Layout from "./Layout";
+import { AppRoute } from "../constants";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import CartPage from "../pages/cart-page/Cart-page";
 
 export default function App(): JSX.Element {
   return (

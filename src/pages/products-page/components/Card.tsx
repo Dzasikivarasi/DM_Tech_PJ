@@ -1,10 +1,10 @@
-import { useDispatch } from "react-redux";
+import styles from "../products.module.scss";
 import Rating from "../../../components/rating/Rating";
+import { useDispatch } from "react-redux";
 import { AppRoute } from "../../../constants";
 import { AppDispatch } from "../../../store/store";
 import { Product } from "../../../types";
 import { formatNumber } from "../../../utils";
-import styles from "../products.module.scss";
 import { useNavigate } from "react-router";
 import { getProductByIDAction } from "../../../store/products/products-api";
 

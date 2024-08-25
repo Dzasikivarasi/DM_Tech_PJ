@@ -1,4 +1,5 @@
 import styles from "./header.module.scss";
+
 type BurgerIconProps = {
   menuHandler: () => void;
 };
