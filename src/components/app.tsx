@@ -11,7 +11,7 @@ import { ToastContainer } from "react-toastify";
 
 export default function App(): JSX.Element {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/DM_Tech_PJ/">
       <ToastContainer />
       <Routes>
         <Route path="/" element={<Layout />}>

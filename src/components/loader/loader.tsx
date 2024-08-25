@@ -5,7 +5,7 @@ export default function Loader(): JSX.Element {
     <div className={styles["loader-container"]}>
       <img
         className={styles["loader"]}
-        src="../../../public/img/icons-svg/loader.svg"
+        src="/DM_Tech_PJ/img/icons-svg/loader.svg"
         alt="Loading..."
         width="24"
         height="24"

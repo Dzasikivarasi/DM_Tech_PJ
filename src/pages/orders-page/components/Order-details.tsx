@@ -69,7 +69,7 @@ export default function OrderDetails({
       />
       <img
         className={styles["order_info-close"]}
-        src="/img/icons-svg/close.svg"
+        src="/DM_Tech_PJ/img/icons-svg/close.svg"
         alt="Закрыть"
         onClick={hideOrder}
       />

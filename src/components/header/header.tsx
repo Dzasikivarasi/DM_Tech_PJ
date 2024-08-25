@@ -48,7 +48,7 @@ export default function Header(): JSX.Element {
         <img
           onClick={onLogoClick}
           className={styles["header_logo"]}
-          src="/img/icons-svg/logo.svg"
+          src="/DM_Tech_PJ/img/icons-svg/logo.svg"
           alt="Логотип"
         />
         <nav className={styles["header_menu"]}>
