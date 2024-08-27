@@ -70,6 +70,7 @@ export default function ProductsPage(): JSX.Element {
 
   return (
     <main className={styles["main"]}>
+      <Loader />
       {loadingStatus && page === 1 ? (
         <Loader />
       ) : (

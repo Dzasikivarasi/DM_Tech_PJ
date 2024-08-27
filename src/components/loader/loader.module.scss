@@ -16,8 +16,10 @@
 }
 
 .loader {
-  width: 50%;
-  height: 50%;
+  width: 40%;
+  height: 40%;
   animation: spin 2s linear infinite;
-  transform-origin: center;
+  text-align: center;
+  margin-left: 35%;
+  transform: translateX(-35%);
 }
