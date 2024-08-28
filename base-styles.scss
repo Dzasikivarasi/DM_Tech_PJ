@@ -36,6 +36,17 @@ input[type="radio"] {
   margin: 0;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Для Firefox */
+input[type="number"] {
+  -moz-appearance: textfield; /* Убирает стрелки в Firefox */
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -120,4 +131,16 @@ body {
   -webkit-line-clamp: $lines-lount;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@mixin input-styles() {
+  background-color: $white;
+  border-radius: 5px;
+  color: $grey;
+  border: none;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+    cursor: text;
+  }
 }
