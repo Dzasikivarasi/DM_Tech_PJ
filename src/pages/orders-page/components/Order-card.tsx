@@ -4,19 +4,23 @@ import { Order } from "../../../types";
 import { formatNumber } from "../../../utils";
 import { consecutiveUniqueRandom } from "unique-random";
 import { useState } from "react";
+import { RANDOM_ORDER_MAX, RANDOM_ORDER_MIN } from "../../../constants";
 
 type OrderCardProps = {
   order: Order;
 };
 
 export default function OrderCard({ order }: OrderCardProps): JSX.Element {
-  const [showDetails, setShowDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState<boolean>(false);
   const orderDate = new Date(order[0].createdAt).toLocaleDateString();
   const totalAmount = order.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
     0
   );
-  const generateRandomOrderNum = consecutiveUniqueRandom(100000, 999999);
+  const generateRandomOrderNum = consecutiveUniqueRandom(
+    RANDOM_ORDER_MIN,
+    RANDOM_ORDER_MAX
+  );
   const randomOrderNum = generateRandomOrderNum();
 
   const orderClickHandler = (): void => {

@@ -48,3 +48,9 @@ export type GetOrders = {
   meta: ProductsMeta;
   data: Order[];
 };
+
+export type Filter = {
+  minPrice: number | undefined;
+  maxPrice: number | undefined;
+  minRating: number | undefined;
+};

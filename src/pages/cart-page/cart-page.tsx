@@ -10,17 +10,21 @@ import { formatNumber } from "../../utils";
 import { submitCartAction, updateCartAction } from "../../store/cart/cart-api";
 import { CartItems, UpdateCartRequestData } from "../../types";
 import { toast } from "react-toastify";
-import { CREATE_ORDER_ERROR, EMPTY_CART_ERROR } from "../../constants";
+import {
+  CREATE_ORDER_ERROR,
+  EMPTY_CART_ERROR,
+  MAX_AMOUNT,
+  MAX_AMOUNT_ERROR,
+} from "../../constants";
 
 export default function CartPage(): JSX.Element {
   const productsInCart = useSelector((state: RootState) => state.cart.cart);
   const loadingStatus = useSelector((state: RootState) => state.cart.loading);
-  const [initialLoad, setInitialLoad] = useState(true);
+  const [initialLoad, setInitialLoad] = useState<boolean>(true);
   const showLoader = initialLoad && loadingStatus;
   const finalSum = productsInCart.reduce((sum, item) => {
     return sum + item.product.price * item.quantity;
   }, 0);
-
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
@@ -32,23 +36,27 @@ export default function CartPage(): JSX.Element {
   };
 
   const onSubmitButtonClick = async () => {
-    const finalCart: UpdateCartRequestData = [];
-    filterProductsForSubmit(productsInCart).forEach((product) => {
-      finalCart.push({
+    if (finalSum <= MAX_AMOUNT) {
+      const finalCart: UpdateCartRequestData = filterProductsForSubmit(
+        productsInCart
+      ).map((product) => ({
         id: product.product.id,
         quantity: product.quantity,
-      });
-    });
+      }));
 
-    if (finalCart.length > 0) {
-      try {
-        await dispatch(updateCartAction(finalCart));
-        await dispatch(submitCartAction());
-      } catch (error) {
-        toast.error(CREATE_ORDER_ERROR);
+      if (finalCart.length > 0) {
+        try {
+          await dispatch(updateCartAction(finalCart));
+          await dispatch(submitCartAction());
+        } catch (error) {
+          toast.error(CREATE_ORDER_ERROR);
+        }
+      } else {
+        toast.warning(EMPTY_CART_ERROR);
       }
     } else {
-      toast.warning(EMPTY_CART_ERROR);
+      toast.error(MAX_AMOUNT_ERROR);
+      return;
     }
   };
 

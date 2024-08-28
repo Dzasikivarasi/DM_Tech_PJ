@@ -10,7 +10,14 @@
     width: 100%;
     padding: 8px 0px 50px;
   }
-
+  &_empty {
+    background-size: 300px 250px;
+    width: 100%;
+    min-height: 20vh;
+    padding: 50px 0;
+    font-size: 20px;
+    text-align: center;
+  }
   &_list {
     display: flex;
     flex-direction: column;

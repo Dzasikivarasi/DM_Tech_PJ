@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Product, Products } from "../../types";
+import { Filter, Product, Products } from "../../types";
 import { toast } from "react-toastify";
 import { LOAD_ERROR } from "../../constants";
 import { getProductByIDAction, getProductsAction } from "./products-api";
@@ -13,6 +13,7 @@ interface ProductsInitialStateType {
   searchRequest: string;
   searchResults: Products;
   searchLoader: boolean;
+  filters: Filter;
 }
 
 const initialState: ProductsInitialStateType = {
@@ -24,6 +25,11 @@ const initialState: ProductsInitialStateType = {
   searchRequest: "",
   searchResults: [],
   searchLoader: false,
+  filters: {
+    minPrice: undefined,
+    maxPrice: undefined,
+    minRating: undefined,
+  },
 };
 
 const productsSlice = createSlice({
@@ -41,6 +47,12 @@ const productsSlice = createSlice({
     },
     updateSearchRequestValue: (state, action) => {
       state.searchRequest = action.payload;
+    },
+    dropFilters: (state) => {
+      state.filters = initialState.filters;
+    },
+    updateFilters: (state, action) => {
+      state.filters = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -90,6 +102,8 @@ export const {
   dropDisplayedProducts,
   updateProductsInCartCount,
   updateSearchRequestValue,
+  dropFilters,
+  updateFilters,
 } = productsSlice.actions;
 export type { ProductsInitialStateType };
 export default productsSlice.reducer;

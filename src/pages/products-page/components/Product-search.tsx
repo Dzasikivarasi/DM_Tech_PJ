@@ -20,6 +20,15 @@ export default function ProductSearch(): JSX.Element {
   const searchResults = useSelector(
     (state: RootState) => state.products.searchResults
   );
+  const filterMinPrice = useSelector(
+    (state: RootState) => state.products.filters.minPrice
+  );
+  const filterMaxPrice = useSelector(
+    (state: RootState) => state.products.filters.maxPrice
+  );
+  const filterMinRating = useSelector(
+    (state: RootState) => state.products.filters.minRating
+  );
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -57,6 +66,9 @@ export default function ProductSearch(): JSX.Element {
         page: 1,
         search: inputData,
         context: "displayedProducts",
+        priceFrom: filterMinPrice,
+        priceTo: filterMaxPrice,
+        ratingFrom: filterMinRating,
       })
     );
     const productsData = result.payload as { data: Products };

@@ -15,15 +15,19 @@ export default function OrdersPage(): JSX.Element {
   }, []);
 
   return (
-    <>
-      <div className={styles["orders"]}>
-        <ul className={styles["orders_list"]}>
-          {orders.map((orderGroup, index) => (
-            <OrderCard key={index} order={orderGroup} />
-          ))}
-        </ul>
-        <PagesScroll />
-      </div>
-    </>
+    <div className={styles["orders"]}>
+      {orders && orders.length > 0 ? (
+        <>
+          <ul className={styles["orders_list"]}>
+            {orders.map((orderGroup, index) => (
+              <OrderCard key={index} order={orderGroup} />
+            ))}
+          </ul>
+          <PagesScroll />
+        </>
+      ) : (
+        <div className={styles["orders_empty"]}>У вас пока нет заказов</div>
+      )}
+    </div>
   );
 }

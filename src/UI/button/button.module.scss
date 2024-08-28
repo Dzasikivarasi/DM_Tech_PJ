@@ -191,3 +191,35 @@
     opacity: 0.5;
   }
 }
+
+.filter-btn {
+  @include base-button();
+  background-color: $base-blue;
+  padding: 10px 14px;
+  border-radius: 12px;
+  color: $white;
+  font-size: 14px;
+  font-weight: bold;
+  width: auto;
+  max-width: 120px;
+  height: 40px;
+  text-align: center;
+  white-space: nowrap;
+  margin-top: 10px;
+}
+
+.filter-drop-btn {
+  @include base-button();
+  background-color: transparent;
+  padding: 10px 14px;
+  border-radius: 12px;
+  color: $grey;
+  font-size: 14px;
+  font-weight: bold;
+  width: auto;
+  max-width: 120px;
+  height: 40px;
+  text-align: center;
+  white-space: nowrap;
+  margin-top: 10px;
+}

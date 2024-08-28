@@ -17,13 +17,22 @@ export default function ProductsPage(): JSX.Element {
   const displayedProducts = useSelector(
     (state: RootState) => state.products.displayedProducts
   );
-  const [page, setPage] = useState(1);
-  const [loadingNewPage, setloadingNewPage] = useState(false);
+  const [page, setPage] = useState<number>(1);
+  const [loadingNewPage, setloadingNewPage] = useState<boolean>(false);
   const loadingStatus = useSelector(
     (state: RootState) => state.products.loading
   );
   const searchRequest = useSelector(
     (state: RootState) => state.products.searchRequest
+  );
+  const filterMinPrice = useSelector(
+    (state: RootState) => state.products.filters.minPrice
+  );
+  const filterMaxPrice = useSelector(
+    (state: RootState) => state.products.filters.maxPrice
+  );
+  const filterMinRating = useSelector(
+    (state: RootState) => state.products.filters.minRating
   );
   const dispatch: AppDispatch = useDispatch();
   const [initialLoading, setInitialLoding] = useState(true);
@@ -35,6 +44,9 @@ export default function ProductsPage(): JSX.Element {
           page: 1,
           search: searchRequest,
           context: "displayedProducts",
+          priceFrom: filterMinPrice,
+          priceTo: filterMaxPrice,
+          ratingFrom: filterMinRating,
         })
       );
       const productsData = result.payload as { data: Products };
@@ -46,19 +58,14 @@ export default function ProductsPage(): JSX.Element {
       }
     };
     initProducts();
-  }, [searchRequest, initialLoading, dispatch]);
-
-  // useEffect(() => {
-  //   const initProducts = async () => {
-  //   dispatch(
-  //     getProductsAction({
-  //       search: searchRequest,
-  //       page: 1,
-  //       context: "displayedProducts",
-  //     })
-  //   );
-  //   dispatch(dropDisplayedProducts(productsData.data));
-  // }, [searchRequest]);
+  }, [
+    searchRequest,
+    initialLoading,
+    dispatch,
+    filterMinPrice,
+    filterMaxPrice,
+    filterMinRating,
+  ]);
 
   const scrollHandler = (): void => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
@@ -82,6 +89,9 @@ export default function ProductsPage(): JSX.Element {
             page,
             search: searchRequest,
             context: "displayedProducts",
+            priceFrom: filterMinPrice,
+            priceTo: filterMaxPrice,
+            ratingFrom: filterMinRating,
           })
         );
         const productsData = result.payload as { data: Products };
@@ -94,7 +104,15 @@ export default function ProductsPage(): JSX.Element {
       };
       loadProducts();
     }
-  }, [loadingNewPage]);
+  }, [
+    dispatch,
+    filterMaxPrice,
+    filterMinPrice,
+    filterMinRating,
+    loadingNewPage,
+    page,
+    searchRequest,
+  ]);
 
   return (
     <main className={styles["main"]}>
@@ -108,9 +126,7 @@ export default function ProductsPage(): JSX.Element {
           ))}
         </ul>
       ) : (
-        <div className={styles["main_products-empty"]}>
-          Товары по данному запросу отсутствуют
-        </div>
+        <div className={styles["main_products-empty"]}>Товары отсутствуют</div>
       )}
       {loadingStatus && page > 1 && <Loader />}
     </main>
