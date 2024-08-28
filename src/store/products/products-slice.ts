@@ -10,6 +10,9 @@ interface ProductsInitialStateType {
   displayedProducts: Products;
   loading: boolean;
   productsInCartCount: number;
+  searchRequest: string;
+  searchResults: Products;
+  searchLoader: boolean;
 }
 
 const initialState: ProductsInitialStateType = {
@@ -18,6 +21,9 @@ const initialState: ProductsInitialStateType = {
   displayedProducts: [],
   loading: true,
   productsInCartCount: 0,
+  searchRequest: "",
+  searchResults: [],
+  searchLoader: false,
 };
 
 const productsSlice = createSlice({
@@ -33,18 +39,36 @@ const productsSlice = createSlice({
     updateProductsInCartCount: (state, action) => {
       state.productsInCartCount = action.payload;
     },
+    updateSearchRequestValue: (state, action) => {
+      state.searchRequest = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getProductsAction.pending, (state) => {
-        state.loading = true;
+      .addCase(getProductsAction.pending, (state, action) => {
+        const { context } = action.meta.arg;
+        if (context === "displayedProducts") {
+          state.loading = true;
+        } else if (context === "search") {
+          state.searchLoader = true;
+        }
       })
       .addCase(getProductsAction.fulfilled, (state, action) => {
         state.loading = false;
-        state.products = action.payload.data;
+        const { context } = action.meta.arg;
+        if (context === "displayedProducts") {
+          state.products = action.payload.data;
+        } else if (context === "search") {
+          state.searchResults = action.payload.data;
+        }
       })
-      .addCase(getProductsAction.rejected, (state) => {
-        state.loading = false;
+      .addCase(getProductsAction.rejected, (state, action) => {
+        const { context } = action.meta.arg;
+        if (context === "displayedProducts") {
+          state.loading = false;
+        } else if (context === "search") {
+          state.searchLoader = false;
+        }
         toast(LOAD_ERROR);
       })
       .addCase(getProductByIDAction.pending, (state) => {
@@ -65,6 +89,7 @@ export const {
   updateDisplayedProducts,
   dropDisplayedProducts,
   updateProductsInCartCount,
+  updateSearchRequestValue,
 } = productsSlice.actions;
 export type { ProductsInitialStateType };
 export default productsSlice.reducer;

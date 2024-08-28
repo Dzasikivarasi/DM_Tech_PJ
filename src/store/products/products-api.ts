@@ -9,14 +9,15 @@ import { GetProducts, Product } from "../../types";
 
 export const getProductsAction = createAsyncThunk<
   GetProducts,
-  { page: number }
->("products/loading", async ({ page }) => {
+  { page: number; search?: string; context?: "displayedProducts" | "search" }
+>("products/loading", async ({ page, search }) => {
   const response = await axiosInstance.get<GetProducts>(
     `${BACKEND_URL}${GET_PRODUCTS_ENDPOINT}`,
     {
       params: {
         page,
         limit: PRODUCTS_LIMIT_PER_CLICK,
+        ...(search ? { search } : {}),
       },
       headers: {
         "Content-Type": "application/json",
