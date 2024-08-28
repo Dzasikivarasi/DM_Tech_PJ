@@ -10,6 +10,7 @@
 
 Технологии<br>
 React, TypeScript, Redux Toolkit и Redux Thunk, Axios, React Router DOM, Sass, Vite.<br>
+Настроена автоматическая проверка перед коммитом с помощью ESLint и Husky.<br>
 
 Дополнительный функционал<br>
 Бесконечный скролл: порционная загрузка данных на странице товаров.<br>
