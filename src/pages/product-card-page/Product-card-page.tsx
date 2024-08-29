@@ -9,7 +9,7 @@ import { AppRoute } from "../../constants";
 import { formatNumber } from "../../utils";
 import DOMPurify from "dompurify";
 import { updateCart } from "../../store/cart/cart-actions";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { getProductByIDAction } from "../../store/products/products-api";
 
 export default function ProductCardPage(): JSX.Element {
@@ -25,6 +25,13 @@ export default function ProductCardPage(): JSX.Element {
     (cartItem) => cartItem.product.id === params.id
   );
   const dispatch: AppDispatch = useDispatch();
+  const componentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (componentRef.current) {
+      componentRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -63,7 +70,7 @@ export default function ProductCardPage(): JSX.Element {
   const cleanHtml = DOMPurify.sanitize(product.description || "");
 
   return (
-    <main className={styles["main"]}>
+    <main className={styles["main"]} ref={componentRef}>
       <div className={styles["main_product"]}>
         <div className={styles["main_product-picture"]}>
           <img
