@@ -7,27 +7,19 @@ import {
 } from "../../../store/products/products-slice";
 import { useEffect, useRef, useState } from "react";
 import { getProductsAction } from "../../../store/products/products-api";
-import { Products } from "../../../types";
 import SearchDropdown from "./Search-dropdown";
+import { useFetchProducts } from "../../../hooks/UseFetchProducts";
 
 export default function ProductSearch(): JSX.Element {
   const searchRequest = useSelector(
     (state: RootState) => state.products.searchRequest
   );
   const dispatch: AppDispatch = useDispatch();
+  const fetchProducts = useFetchProducts();
   const [isDropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [inputData, setInputData] = useState<string>(searchRequest);
   const searchResults = useSelector(
     (state: RootState) => state.products.searchResults
-  );
-  const filterMinPrice = useSelector(
-    (state: RootState) => state.products.filters.minPrice
-  );
-  const filterMaxPrice = useSelector(
-    (state: RootState) => state.products.filters.maxPrice
-  );
-  const filterMinRating = useSelector(
-    (state: RootState) => state.products.filters.minRating
   );
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -61,18 +53,15 @@ export default function ProductSearch(): JSX.Element {
 
   const handleSearchClick = async () => {
     dispatch(updateSearchRequestValue(inputData));
-    const result = await dispatch(
-      getProductsAction({
+
+    const fetchTypedProducts = async () => {
+      const productsData = await fetchProducts({
         page: 1,
         search: inputData,
-        context: "displayedProducts",
-        priceFrom: filterMinPrice,
-        priceTo: filterMaxPrice,
-        ratingFrom: filterMinRating,
-      })
-    );
-    const productsData = result.payload as { data: Products };
-    dispatch(dropDisplayedProducts(productsData.data));
+      });
+      dispatch(dropDisplayedProducts(productsData));
+    };
+    fetchTypedProducts();
     setDropdownVisible(false);
   };
 

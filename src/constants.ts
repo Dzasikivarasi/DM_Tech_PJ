@@ -22,6 +22,8 @@ export const FILTERS_ERROR =
 export const MAX_AMOUNT_ERROR =
   "Превышена максимальная сумма заказа - 10 000 Р";
 export const NOT_FOUND_PAGE_TEXT = "Такой страницы не существует";
+export const EMPTY_PRODUCTS_TEXT = "Товары отсутствуют";
+export const EMPTY_ORDERS_TEXT = "У вас пока нет заказов";
 
 export enum AppRoute {
   Products = "/products",

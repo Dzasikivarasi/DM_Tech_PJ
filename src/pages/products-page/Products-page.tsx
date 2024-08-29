@@ -5,22 +5,25 @@ import { useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { getProductsAction } from "../../store/products/products-api";
-import { Products } from "../../types";
 import {
   dropDisplayedProducts,
   updateDisplayedProducts,
 } from "../../store/products/products-slice";
 import ProductsWidget from "./components/Products-widget";
+import { useFetchProducts } from "../../hooks/UseFetchProducts";
+import { EMPTY_PRODUCTS_TEXT } from "../../constants";
 
 export default function ProductsPage(): JSX.Element {
-  const displayedProducts = useSelector(
-    (state: RootState) => state.products.displayedProducts
-  );
+  const displayedProducts =
+    useSelector((state: RootState) => state.products.displayedProducts) || [];
+  const fetchProducts = useFetchProducts();
   const [page, setPage] = useState<number>(1);
   const [loadingNewPage, setloadingNewPage] = useState<boolean>(false);
   const loadingStatus = useSelector(
     (state: RootState) => state.products.loading
+  );
+  const totalProductsCount = useSelector(
+    (state: RootState) => state.products.totalCount
   );
   const searchRequest = useSelector(
     (state: RootState) => state.products.searchRequest
@@ -39,20 +42,12 @@ export default function ProductsPage(): JSX.Element {
 
   useEffect(() => {
     const initProducts = async () => {
-      const result = await dispatch(
-        getProductsAction({
-          page: 1,
-          search: searchRequest,
-          context: "displayedProducts",
-          priceFrom: filterMinPrice,
-          priceTo: filterMaxPrice,
-          ratingFrom: filterMinRating,
-        })
-      );
-      const productsData = result.payload as { data: Products };
+      const productsData = await fetchProducts({
+        page: 1,
+      });
 
-      if (initialLoading && productsData && productsData.data.length > 0) {
-        dispatch(dropDisplayedProducts(productsData.data));
+      if (initialLoading && productsData && productsData.length > 0) {
+        dispatch(dropDisplayedProducts(productsData));
         setInitialLoding(false);
         setPage(2);
       }
@@ -75,27 +70,19 @@ export default function ProductsPage(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (loadingNewPage) {
-      const loadProducts = async () => {
-        const result = await dispatch(
-          getProductsAction({
-            page,
-            search: searchRequest,
-            context: "displayedProducts",
-            priceFrom: filterMinPrice,
-            priceTo: filterMaxPrice,
-            ratingFrom: filterMinRating,
-          })
-        );
-        const productsData = result.payload as { data: Products };
+    if (loadingNewPage && displayedProducts.length < totalProductsCount) {
+      const loadMoreProducts = async () => {
+        const productsData = await fetchProducts({
+          page,
+        });
 
-        if (productsData && productsData.data.length > 0) {
-          dispatch(updateDisplayedProducts(productsData.data));
+        if (productsData && productsData.length > 0) {
+          dispatch(updateDisplayedProducts(productsData));
           setPage((prevState) => prevState + 1);
         }
         setloadingNewPage(false);
       };
-      loadProducts();
+      loadMoreProducts();
     }
   }, [
     dispatch,
@@ -105,6 +92,8 @@ export default function ProductsPage(): JSX.Element {
     loadingNewPage,
     page,
     searchRequest,
+    fetchProducts,
+    totalProductsCount,
   ]);
 
   return (
@@ -119,7 +108,9 @@ export default function ProductsPage(): JSX.Element {
           ))}
         </ul>
       ) : (
-        <div className={styles["main_products-empty"]}>Товары отсутствуют</div>
+        <div className={styles["main_products-empty"]}>
+          {EMPTY_PRODUCTS_TEXT}
+        </div>
       )}
       {loadingStatus && page > 1 && <Loader />}
     </main>

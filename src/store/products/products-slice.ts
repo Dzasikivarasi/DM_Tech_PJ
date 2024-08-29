@@ -7,6 +7,7 @@ import { getProductByIDAction, getProductsAction } from "./products-api";
 interface ProductsInitialStateType {
   products: Products;
   product: Product | null;
+  totalCount: number;
   displayedProducts: Products;
   loading: boolean;
   productsInCartCount: number;
@@ -19,6 +20,7 @@ interface ProductsInitialStateType {
 const initialState: ProductsInitialStateType = {
   products: [],
   product: null,
+  totalCount: 0,
   displayedProducts: [],
   loading: true,
   productsInCartCount: 0,
@@ -67,6 +69,7 @@ const productsSlice = createSlice({
       })
       .addCase(getProductsAction.fulfilled, (state, action) => {
         state.loading = false;
+        state.totalCount = action.payload.meta.total;
         const { context } = action.meta.arg;
         if (context === "displayedProducts") {
           state.products = action.payload.data;

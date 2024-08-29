@@ -8,11 +8,10 @@ import {
   updateFilters,
 } from "../../../store/products/products-slice";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductsAction } from "../../../store/products/products-api";
-import { Products } from "../../../types";
 import { AppDispatch, RootState } from "../../../store/store";
 import FilterSelect from "./Filter-select";
 import { validateFilterPrice } from "../../../utils";
+import { useFetchProducts } from "../../../hooks/UseFetchProducts";
 
 export default function ProductFilters(): JSX.Element {
   const filterMinPrice = useSelector(
@@ -30,9 +29,10 @@ export default function ProductFilters(): JSX.Element {
     filterMinRating
   );
   const dispatch: AppDispatch = useDispatch();
-  const searchRequest = useSelector(
-    (state: RootState) => state.products.searchRequest
-  );
+  const fetchProducts = useFetchProducts();
+  // const searchRequest = useSelector(
+  //   (state: RootState) => state.products.searchRequest
+  // );
 
   const handleFiltersChange = (
     value: number,
@@ -62,18 +62,28 @@ export default function ProductFilters(): JSX.Element {
         minRating: minRating,
       };
       dispatch(updateFilters(newFilters));
-      const result = await dispatch(
-        getProductsAction({
+      const loadFilteredProducts = async () => {
+        const productsData = await fetchProducts({
           page: 1,
-          search: searchRequest,
-          context: "displayedProducts",
           priceFrom: minPrice,
           priceTo: maxPrice,
           ratingFrom: minRating,
-        })
-      );
-      const productsData = result.payload as { data: Products };
-      dispatch(dropDisplayedProducts(productsData.data));
+        });
+        dispatch(dropDisplayedProducts(productsData));
+      };
+      loadFilteredProducts();
+
+      // const result = await dispatch(
+      //   getProductsAction({
+      //     page: 1,
+      //     search: searchRequest,
+      //     context: "displayedProducts",
+      //     priceFrom: minPrice,
+      //     priceTo: maxPrice,
+      //     ratingFrom: minRating,
+      //   })
+      // );
+      // const productsData = result.payload as { data: Products };
     }
   };
 
