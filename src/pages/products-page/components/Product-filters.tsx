@@ -15,9 +15,20 @@ import FilterSelect from "./Filter-select";
 import { validateFilterPrice } from "../../../utils";
 
 export default function ProductFilters(): JSX.Element {
-  const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
-  const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
-  const [minRating, setMinRating] = useState<number | undefined>(undefined);
+  const filterMinPrice = useSelector(
+    (state: RootState) => state.products.filters.minPrice
+  );
+  const filterMaxPrice = useSelector(
+    (state: RootState) => state.products.filters.maxPrice
+  );
+  const filterMinRating = useSelector(
+    (state: RootState) => state.products.filters.minRating
+  );
+  const [minPrice, setMinPrice] = useState<number | undefined>(filterMinPrice);
+  const [maxPrice, setMaxPrice] = useState<number | undefined>(filterMaxPrice);
+  const [minRating, setMinRating] = useState<number | undefined>(
+    filterMinRating
+  );
   const dispatch: AppDispatch = useDispatch();
   const searchRequest = useSelector(
     (state: RootState) => state.products.searchRequest

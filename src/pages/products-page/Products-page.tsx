@@ -58,14 +58,7 @@ export default function ProductsPage(): JSX.Element {
       }
     };
     initProducts();
-  }, [
-    searchRequest,
-    initialLoading,
-    dispatch,
-    filterMinPrice,
-    filterMaxPrice,
-    filterMinRating,
-  ]);
+  }, []);
 
   const scrollHandler = (): void => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
