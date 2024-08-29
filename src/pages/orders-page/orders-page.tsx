@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrdersAction } from "../../store/orders/orders-api";
+import { EMPTY_ORDERS_TEXT } from "../../constants";
 
 export default function OrdersPage(): JSX.Element {
   const orders = useSelector((state: RootState) => state.orders.orders);
@@ -26,7 +27,7 @@ export default function OrdersPage(): JSX.Element {
           <PagesScroll />
         </>
       ) : (
-        <div className={styles["orders_empty"]}>У вас пока нет заказов</div>
+        <div className={styles["orders_empty"]}>{EMPTY_ORDERS_TEXT}</div>
       )}
     </div>
   );

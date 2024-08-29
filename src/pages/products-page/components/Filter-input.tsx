@@ -8,6 +8,7 @@ type FilterInputProps = {
     value: number,
     type: "minPrice" | "maxPrice" | "minRating"
   ) => void;
+  handleKeydownClick: () => void;
 };
 
 export default function FilterInput({
@@ -15,6 +16,7 @@ export default function FilterInput({
   type,
   value,
   handleInputChange,
+  handleKeydownClick,
 }: FilterInputProps): JSX.Element {
   const onInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const newValue = Number(e.target.value);
@@ -24,6 +26,11 @@ export default function FilterInput({
   const onFocus = (e: FocusEvent<HTMLInputElement>): void => {
     if (e.target.value === "0") {
       e.target.value = "";
+    }
+  };
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleKeydownClick();
     }
   };
 
@@ -36,6 +43,7 @@ export default function FilterInput({
         onChange={onInputChange}
         onFocus={onFocus}
         placeholder="..."
+        onKeyDown={handleKeyDown}
       />
     </label>
   );

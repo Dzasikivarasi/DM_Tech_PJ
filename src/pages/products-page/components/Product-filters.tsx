@@ -30,9 +30,6 @@ export default function ProductFilters(): JSX.Element {
   );
   const dispatch: AppDispatch = useDispatch();
   const fetchProducts = useFetchProducts();
-  // const searchRequest = useSelector(
-  //   (state: RootState) => state.products.searchRequest
-  // );
 
   const handleFiltersChange = (
     value: number,
@@ -72,19 +69,11 @@ export default function ProductFilters(): JSX.Element {
         dispatch(dropDisplayedProducts(productsData));
       };
       loadFilteredProducts();
-
-      // const result = await dispatch(
-      //   getProductsAction({
-      //     page: 1,
-      //     search: searchRequest,
-      //     context: "displayedProducts",
-      //     priceFrom: minPrice,
-      //     priceTo: maxPrice,
-      //     ratingFrom: minRating,
-      //   })
-      // );
-      // const productsData = result.payload as { data: Products };
     }
+  };
+
+  const handleKeydownClick = () => {
+    onFilterButtonClick();
   };
 
   const onFilterDropButtonClick = () => {
@@ -102,17 +91,20 @@ export default function ProductFilters(): JSX.Element {
           type="minPrice"
           value={minPrice}
           handleInputChange={handleFiltersChange}
+          handleKeydownClick={handleKeydownClick}
         />
         <FilterInput
           title="Цена до:"
           type="maxPrice"
           value={maxPrice}
           handleInputChange={handleFiltersChange}
+          handleKeydownClick={handleKeydownClick}
         />
         <FilterSelect
           title="Минимальный рейтинг:"
           value={minRating}
           handleInputChange={handleFiltersChange}
+          handleKeyDown={handleKeydownClick}
         />
       </div>
       <div className={styles["main_widgets-filters-controls"]}>

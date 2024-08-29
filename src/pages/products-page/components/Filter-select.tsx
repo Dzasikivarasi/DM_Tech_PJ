@@ -4,12 +4,14 @@ type FilterSelectProps = {
   title: string;
   value: number | undefined;
   handleInputChange: (value: number, type: "minRating") => void;
+  handleKeyDown: () => void;
 };
 
 export default function FilterSelect({
   title,
   value,
   handleInputChange,
+  handleKeyDown,
 }: FilterSelectProps): JSX.Element {
   const onInputChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     const newValue = Number(e.target.value);
@@ -19,7 +21,11 @@ export default function FilterSelect({
   return (
     <label>
       {title}
-      <select value={value === undefined ? "" : value} onChange={onInputChange}>
+      <select
+        value={value === undefined ? "" : value}
+        onChange={onInputChange}
+        onKeyDown={handleKeyDown}
+      >
         <option value="">...</option>
         <option value={1}>1★</option>
         <option value={2}>2★</option>
