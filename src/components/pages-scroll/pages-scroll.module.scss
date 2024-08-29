@@ -14,12 +14,6 @@
   left: 50%;
   transform: translateX(-50%);
 
-  @media (max-width: 570px) {
-    position: relative;
-    align-self: flex-end;
-    margin-bottom: 0;
-  }
-
   &_pages {
     display: flex;
     gap: 8px;
