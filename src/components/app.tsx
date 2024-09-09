@@ -12,7 +12,7 @@ import { ToastContainer } from "react-toastify";
 export default function App(): JSX.Element {
   return (
     <BrowserRouter basename="/DM_Tech_PJ/">
-      <ToastContainer />
+      <ToastContainer autoClose={1000} />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Navigate to={AppRoute.Products} replace />} />
